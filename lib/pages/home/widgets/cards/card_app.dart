@@ -11,7 +11,7 @@ class CardApp extends StatelessWidget {
       child: Container(
         child: child,
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(5)),
+            color: Colors.white, borderRadius: BorderRadius.circular(4)),
       ),
     );
   }
