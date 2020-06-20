@@ -4,6 +4,29 @@ class Consts {
   static const String loginUrl = "/auth/login";
 }
 
+class Arrays {
+  static const List<String> latariaEstado = [
+    "Arranhado",
+    "Amassado",
+    "Trincado",
+    "Perfurado",
+    "Quebrado",
+  ];
+
+  static const List<String> nivelItems = [
+    "Bom",
+    "Medio",
+    "Ruim",
+  ];
+
+  static const List<String> farolEstado = [
+    "Mínima",
+    "Média",
+    "Máxima",
+    "Pisca",
+  ];
+}
+
 class Strings {
   static const String appName = "SigFrotas";
   static const String consultandoServidor = "Consultando Servidor... Aguarde";

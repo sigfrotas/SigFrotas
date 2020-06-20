@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:lib_observer/lib_observer.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/model/server/model_veiculos.dart';
+import 'package:sigfrotas/src/model/server/requisicao.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
+import 'package:sigfrotas/src/view/motorista/view_requisicao/view_requisicao.dart';
 
 class ViewListVeiculo extends StatelessWidget {
   const ViewListVeiculo({Key key, this.tipoVeiculo}) : super(key: key);
@@ -50,8 +52,14 @@ class ViewListVeiculo extends StatelessWidget {
                       for (final veiculo in list.veiculo)
                         ListTile(
                           leading: Icon(Icons.directions_car),
-                          title: Text(veiculo.prefixo ?? "Erro"),
-                          trailing: Text(veiculo.placa ?? "Erro"),
+                          title: Text(veiculo.prefixo),
+                          trailing: Text(veiculo.placa),
+                          onTap: () => Get.to<ViewRequisicao>(
+                            ViewRequisicao(
+                              placa: veiculo.placa,
+                              prefixo: veiculo.prefixo,
+                            ),
+                          ),
                         )
                     ],
                   );
