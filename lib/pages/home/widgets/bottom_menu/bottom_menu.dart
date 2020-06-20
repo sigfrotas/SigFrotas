@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nubank_tutorial/pages/home/widgets/bottom_menu/item_menu_bottom.dart';
-import 'package:nubank_tutorial/pages/home/widgets/page_view/teste.dart';
+import 'package:sigfrotas/pages/home/widgets/page_view/teste.dart';
+
+import 'item_menu_bottom.dart';
 
 class BottomMenu extends StatefulWidget {
   final bool showMenu;
@@ -29,9 +30,7 @@ class _BottomMenuState extends State<BottomMenu> {
         builder: (context, value, child) {
           return AnimatedPositioned(
             duration: Duration(milliseconds: 200),
-            bottom: !widget.showMenu
-                ? 0 + MediaQuery.of(context).padding.bottom
-                : 0,
+            bottom: !widget.showMenu ? 0 + MediaQuery.of(context).padding.bottom : 0,
             left: value,
             right: value * -1,
             height: MediaQuery.of(context).size.height * 0.14,
@@ -52,11 +51,8 @@ class _BottomMenuState extends State<BottomMenu> {
                           text: 'Automóvel',
                         ),
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      TestePage()));
+                          Navigator.push<void>(context,
+                              MaterialPageRoute(builder: (BuildContext context) => TestePage()));
                         },
                       ),
                       InkWell(
@@ -66,11 +62,8 @@ class _BottomMenuState extends State<BottomMenu> {
                           text: 'Motocicleta',
                         ),
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      TestePage()));
+                          Navigator.push<void>(context,
+                              MaterialPageRoute(builder: (BuildContext context) => TestePage()));
                         },
                       ),
                       InkWell(
@@ -80,11 +73,8 @@ class _BottomMenuState extends State<BottomMenu> {
                           text: 'Combustível',
                         ),
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      TestePage()));
+                          Navigator.push<void>(context,
+                              MaterialPageRoute(builder: (BuildContext context) => TestePage()));
                         },
                       ),
                       InkWell(
@@ -94,11 +84,8 @@ class _BottomMenuState extends State<BottomMenu> {
                           text: 'Relatórios',
                         ),
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      TestePage()));
+                          Navigator.push<void>(context,
+                              MaterialPageRoute(builder: (BuildContext context) => TestePage()));
                         },
                       ),
                     ],

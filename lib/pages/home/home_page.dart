@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nubank_tutorial/pages/home/widgets/bottom_menu/bottom_menu.dart';
-import 'package:nubank_tutorial/pages/home/widgets/menu/menu_app.dart';
-import 'package:nubank_tutorial/pages/home/widgets/my_app_bar.dart';
-import 'package:nubank_tutorial/pages/home/widgets/page_view/page_view_app.dart';
+import 'package:sigfrotas/pages/home/widgets/bottom_menu/bottom_menu.dart';
+import 'package:sigfrotas/pages/home/widgets/menu/menu_app.dart';
+import 'package:sigfrotas/pages/home/widgets/my_app_bar.dart';
+import 'package:sigfrotas/pages/home/widgets/page_view/page_view_app.dart';
 
 class HomePage extends StatefulWidget {
   @override

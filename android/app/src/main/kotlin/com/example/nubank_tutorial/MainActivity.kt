@@ -1,4 +1,4 @@
-package com.example.nubank_tutorial
+package com.br.sigfrotas
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

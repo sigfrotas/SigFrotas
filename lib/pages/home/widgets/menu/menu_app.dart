@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nubank_tutorial/pages/home/widgets/menu/item_menu.dart';
-import 'package:nubank_tutorial/pages/splash/splash_page.dart';
+import 'package:sigfrotas/pages/home/widgets/menu/item_menu.dart';
+import 'package:sigfrotas/pages/splash/splash_page.dart';
 
 class MenuApp extends StatelessWidget {
   final double top;
@@ -17,7 +17,6 @@ class MenuApp extends StatelessWidget {
         duration: Duration(milliseconds: 100),
         opacity: showMenu ? 1 : 0,
         child: Container(
-          
           height: MediaQuery.of(context).size.height * 0.55,
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
@@ -44,9 +43,7 @@ class MenuApp extends StatelessWidget {
                   TextSpan(
                     text: 'Post/Grad: ',
                     children: [
-                      TextSpan(
-                          text: '3º SGT PM',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(text: '3º SGT PM', style: TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
                   style: TextStyle(fontSize: 15),
@@ -59,8 +56,7 @@ class MenuApp extends StatelessWidget {
                     text: 'CPF: ',
                     children: [
                       TextSpan(
-                          text: '042.281.432-00',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                          text: '042.281.432-00', style: TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
                   style: TextStyle(fontSize: 15),
@@ -72,9 +68,7 @@ class MenuApp extends StatelessWidget {
                   TextSpan(
                     text: 'CNH: ',
                     children: [
-                      TextSpan(
-                          text: '78753670689',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(text: '78753670689', style: TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
                   style: TextStyle(fontSize: 15),
@@ -104,9 +98,8 @@ class MenuApp extends StatelessWidget {
                       Container(
                         height: 40,
                         width: double.infinity,
-                        decoration: BoxDecoration(
-                            border:
-                                Border.all(width: 0.7, color: Colors.white54)),
+                        decoration:
+                            BoxDecoration(border: Border.all(width: 0.7, color: Colors.white54)),
                         child: RaisedButton(
                           color: Colors.red[900],
                           highlightColor: Colors.transparent,
@@ -118,14 +111,14 @@ class MenuApp extends StatelessWidget {
                           splashColor: Colors.red[600],
                           child: Text(
                             'SAIR DO APP',
-                            style: TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                           ),
-                          onPressed: () {Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      SplashScreen()));},
+                          onPressed: () {
+                            Navigator.push<void>(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) => SplashScreen()));
+                          },
                         ),
                       ),
                     ],

@@ -6,11 +6,11 @@ class SecondCard extends StatefulWidget {
   _SecondCardState createState() => _SecondCardState();
 }
 
-class _SecondCardState extends State<SecondCard>
-    with AutomaticKeepAliveClientMixin {
+class _SecondCardState extends State<SecondCard> with AutomaticKeepAliveClientMixin {
   bool _showSaldo = false;
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(5),
       child: Column(
@@ -38,8 +38,7 @@ class _SecondCardState extends State<SecondCard>
                             ),
                             Text(
                               'Conta',
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 13),
+                              style: TextStyle(color: Colors.grey, fontSize: 13),
                             ),
                           ],
                         ),
@@ -60,8 +59,7 @@ class _SecondCardState extends State<SecondCard>
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, top: 20, bottom: 20),
+                    padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
                     child: SizedBox(
                       width: double.infinity,
                       child: Column(

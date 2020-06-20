@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:nubank_tutorial/pages/home/home_page.dart';
+import 'package:get/get.dart';
+import 'package:sigfrotas/src/utils/vault.dart';
+import 'package:sigfrotas/src/view/shared/branch_view.dart/branch_view.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -20,17 +22,18 @@ class StartState extends State<SplashScreen> {
     startTimer();
   }
 
-  startTimer() async {
+  Future<Timer> startTimer() async {
     var duration = Duration(seconds: 2);
-    return new Timer(duration, route);
+    return new Timer(duration, () async {
+      Get.off<BranchView>(
+        BranchView(
+          data: await Vault.getDefaultInfo(),
+        ),
+      );
+    });
   }
 
-  route() {
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
-  }
-
-  initScreen(BuildContext context) {
+  Widget initScreen(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
