@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sigfrotas/pages/home/widgets/bottom_menu/bottom_menu.dart';
 import 'package:sigfrotas/pages/home/widgets/menu/menu_app.dart';
 import 'package:sigfrotas/pages/home/widgets/my_app_bar.dart';
 import 'package:sigfrotas/pages/home/widgets/page_view/page_view_app.dart';
@@ -37,8 +36,7 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               setState(() {
                 _showMenu = !_showMenu;
-                _yPosition =
-                    _showMenu ? _screenHeigth * .99 : _screenHeigth * .24;
+                _yPosition = _showMenu ? _screenHeigth * .99 : _screenHeigth * .24;
               });
             },
           ),
@@ -46,16 +44,15 @@ class _HomePageState extends State<HomePage> {
             top: _screenHeigth * .20,
             showMenu: _showMenu,
           ),
-          BottomMenu(
-            showMenu: _showMenu,
-          ),
-          
+          // BottomMenu(
+          //   showMenu: _showMenu,
+          // ),
+
           PageViewApp(
             showMenu: _showMenu,
             top: _yPosition,
             onChanged: (index) {
-              setState(() {
-              });
+              setState(() {});
             },
             onPanUpdate: (details) {
               double positionBottomLimit = _screenHeigth * .99;
@@ -65,19 +62,14 @@ class _HomePageState extends State<HomePage> {
               setState(() {
                 _yPosition += details.delta.dy;
 
-                _yPosition = _yPosition < positionTopLimit
-                    ? positionTopLimit
-                    : _yPosition;
+                _yPosition = _yPosition < positionTopLimit ? positionTopLimit : _yPosition;
 
-                _yPosition = _yPosition > positionBottomLimit
-                    ? positionBottomLimit
-                    : _yPosition;
+                _yPosition = _yPosition > positionBottomLimit ? positionBottomLimit : _yPosition;
 
                 if (_yPosition != positionBottomLimit && details.delta.dy > 0) {
-                  _yPosition =
-                      _yPosition > positionTopLimit + midlePosition - 50
-                          ? positionBottomLimit
-                          : _yPosition;
+                  _yPosition = _yPosition > positionTopLimit + midlePosition - 50
+                      ? positionBottomLimit
+                      : _yPosition;
                 }
 
                 if (_yPosition != positionTopLimit && details.delta.dy < 0) {

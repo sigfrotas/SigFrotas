@@ -58,6 +58,8 @@ class _LoginViewState extends State<LoginView> {
             isAdmin: result.isAdmin,
           );
 
+          ///Injeta intancia do Dio já com token
+          Get.put<Dio>(Dio()..options.headers['Authorization'] = "Bearer ${result.token}");
           Navigator.of(_globalKey.currentContext, rootNavigator: true).pop();
           widget.setPosition(2, await Vault.getIsAdmin());
         }

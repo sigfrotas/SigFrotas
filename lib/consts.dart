@@ -19,4 +19,17 @@ class Strings {
   static const String rgMilitar = "RG Militar";
   static const String senha = "Senha";
   static const String senhaConfirmar = "Confirmar senha";
+  static const String automovel = "Automóvel";
+  static const String veiculos = "Veículos";
+  static const String motocicleta = "Motocicleta";
+  static const String combustivel = "Combustível";
+  static const String relatorios = "Relatórios";
+  static const String manutencao = "Manutenção";
+  static const String ultimoProc = "Último Procedimento Efetuado: ";
+  static const String verMais = "Ver >";
+  static const String selecioneVeiculo = "Selecionar Veículo";
+  static const String selecionarCarro = "Selecionar Automóvel";
+  static const String selecionarMoto = "Selecionar Motocicleta";
+  static const String prefixo = "Prefixo veículo";
+  static const String placa = "Placa";
 }

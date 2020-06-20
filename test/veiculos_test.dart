@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:sigfrotas/src/model/server/veiculo.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
+import 'dart:convert';
 
 void main() {
   const String token =
@@ -19,6 +21,6 @@ void main() {
   test('motos', () async {
     final result = await service.listMotos();
     assert(result != null);
-    result.veiculo.forEach(print);
+    result.veiculo.forEach((v) => print(v.placa));
   });
 }

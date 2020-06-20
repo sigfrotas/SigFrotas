@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sigfrotas/pages/home/widgets/page_view/teste.dart';
-
-import 'item_menu_bottom.dart';
+import 'package:get/get.dart';
+import 'package:sigfrotas/src/view/shared/widget/bottom_menu_item.dart';
 
 class BottomMenu extends StatefulWidget {
-  final bool showMenu;
+  const BottomMenu({
+    @required this.items,
+    Key key,
+  }) : super(key: key);
 
-  const BottomMenu({Key key, this.showMenu}) : super(key: key);
+  final List<BottomMenuItem> items;
 
   @override
   _BottomMenuState createState() => _BottomMenuState();
@@ -23,77 +25,33 @@ class _BottomMenuState extends State<BottomMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return (TweenAnimationBuilder<double>(
-        tween: _tween,
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeOutExpo,
-        builder: (context, value, child) {
-          return AnimatedPositioned(
-            duration: Duration(milliseconds: 200),
-            bottom: !widget.showMenu ? 0 + MediaQuery.of(context).padding.bottom : 0,
-            left: value,
-            right: value * -1,
-            height: MediaQuery.of(context).size.height * 0.14,
-            child: IgnorePointer(
-              ignoring: widget.showMenu,
-              child: AnimatedOpacity(
-                duration: Duration(milliseconds: 200),
-                opacity: !widget.showMenu ? 1 : 0,
-                child: Container(
-                  child: ListView(
-                    physics: BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      InkWell(
-                        splashColor: Colors.indigo[800],
-                        child: ItemMenuBottom(
-                          icon: Icons.directions_car,
-                          text: 'Automóvel',
-                        ),
-                        onTap: () {
-                          Navigator.push<void>(context,
-                              MaterialPageRoute(builder: (BuildContext context) => TestePage()));
-                        },
-                      ),
-                      InkWell(
-                        splashColor: Colors.indigo[800],
-                        child: ItemMenuBottom(
-                          icon: Icons.motorcycle,
-                          text: 'Motocicleta',
-                        ),
-                        onTap: () {
-                          Navigator.push<void>(context,
-                              MaterialPageRoute(builder: (BuildContext context) => TestePage()));
-                        },
-                      ),
-                      InkWell(
-                        splashColor: Colors.indigo[800],
-                        child: ItemMenuBottom(
-                          icon: Icons.local_gas_station,
-                          text: 'Combustível',
-                        ),
-                        onTap: () {
-                          Navigator.push<void>(context,
-                              MaterialPageRoute(builder: (BuildContext context) => TestePage()));
-                        },
-                      ),
-                      InkWell(
-                        splashColor: Colors.indigo[800],
-                        child: ItemMenuBottom(
-                          icon: Icons.chrome_reader_mode,
-                          text: 'Relatórios',
-                        ),
-                        onTap: () {
-                          Navigator.push<void>(context,
-                              MaterialPageRoute(builder: (BuildContext context) => TestePage()));
-                        },
-                      ),
-                    ],
-                  ),
+    return TweenAnimationBuilder<double>(
+      tween: _tween,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOutExpo,
+      builder: (context, value, child) {
+        return AnimatedPositioned(
+          duration: const Duration(milliseconds: 200),
+          bottom: Get.mediaQuery.padding.bottom,
+          left: value,
+          right: value * -1,
+          height: MediaQuery.of(context).size.height * 0.14,
+          child: IgnorePointer(
+            ignoring: true,
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 200),
+              opacity: 1,
+              child: Container(
+                child: ListView(
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: widget.items,
                 ),
               ),
             ),
-          );
-        }));
+          ),
+        );
+      },
+    );
   }
 }

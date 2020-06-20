@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sigfrotas/src/model/vault_data.dart';
 import 'package:sigfrotas/src/utils/vault.dart';
 import 'package:sigfrotas/src/view/admin/view_admin.dart';
@@ -36,19 +38,24 @@ class _BranchViewState extends State<BranchView> with SingleTickerProviderStateM
 
   Widget getActualView(int pos, bool isAdmin) {
     switch (pos) {
-      case  0:
+      case 0:
         return LoginView(setPosition: setPosition);
         break;
       case 1:
         return ViewSignin(setPosition: setPosition);
         break;
       case 2:
+
         ///TODO - Get.put<BlocAdmin>(BlocAdmin());
+        ///Injeta instancia do Dio()
+        Get.put<Dio>(Dio()..options.headers['Authorization'] = "Bearer ${widget.data.token}");
         return ViewAdmin();
         break;
       case 3:
 
         ///TODO - Get.put<BlocMotorista>(BlocMotorista());
+        ///Injeta instancia do Dio()
+        Get.put<Dio>(Dio()..options.headers['Authorization'] = "Bearer ${widget.data.token}");
         return ViewMotorista();
       default:
         return Container(

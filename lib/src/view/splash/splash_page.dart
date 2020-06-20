@@ -23,9 +23,9 @@ class StartState extends State<SplashScreen> {
   }
 
   Future<Timer> startTimer() async {
-    var duration = Duration(seconds: 2);
-    return new Timer(duration, () async {
-      Get.off<BranchView>(
+    const duration = Duration(seconds: 2);
+    return Timer(duration, () async {
+      await Get.off<BranchView>(
         BranchView(
           data: await Vault.getDefaultInfo(),
         ),
@@ -46,8 +46,8 @@ class StartState extends State<SplashScreen> {
                 height: 50,
               ),
             ),
-            Padding(padding: EdgeInsets.only(top: 40.0)),
-            Padding(padding: EdgeInsets.only(top: 20.0)),
+            const Padding(padding: EdgeInsets.only(top: 40.0)),
+            const Padding(padding: EdgeInsets.only(top: 20.0)),
             CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
               backgroundColor: Colors.indigo[900],

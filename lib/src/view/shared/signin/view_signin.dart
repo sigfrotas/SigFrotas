@@ -65,6 +65,9 @@ class _ViewSigninState extends State<ViewSignin> {
             token: result.token,
             isAdmin: result.isAdmin,
           );
+
+          //Injeta instancia do Dio já com o token de acesso
+          Get.put<Dio>(Dio()..options.headers['Authorization'] = "Bearer ${result.token}");
           Navigator.of(_globalKey.currentContext, rootNavigator: true).pop();
           widget.setPosition(3, await Vault.getIsAdmin());
         }

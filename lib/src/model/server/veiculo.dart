@@ -10,7 +10,7 @@ class Veiculo {
     this.n,
     this.opm,
     this.placa,
-    this.veculo,
+    this.veiculo,
     this.prefixo,
     this.municipio,
     this.unidade,
@@ -20,15 +20,15 @@ class Veiculo {
 
   factory Veiculo.fromJson(Map<String, Object> json) => _$VeiculoFromJson(json);
 
-  final int n;
+  final String n;
   final String opm;
   final String placa;
-  final String veculo;
+  final String veiculo;
   final String prefixo;
   final String municipio;
   final String unidade;
-  final bool ativa;
-  final int locada;
+  final String ativa;
+  final String locada;
 
   Map<String, Object> toJson() => _$VeiculoToJson(this);
 }

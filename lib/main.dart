@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sigfrotas/consts.dart';
-import 'package:sigfrotas/pages/splash/splash_page.dart';
+import 'package:sigfrotas/src/view/splash/splash_page.dart';
 
 void main() async {
   runApp(

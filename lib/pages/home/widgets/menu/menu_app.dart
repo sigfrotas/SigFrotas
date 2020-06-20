@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sigfrotas/pages/home/widgets/menu/item_menu.dart';
-import 'package:sigfrotas/pages/splash/splash_page.dart';
+import 'package:sigfrotas/src/view/splash/splash_page.dart';
 
 class MenuApp extends StatelessWidget {
   final double top;
