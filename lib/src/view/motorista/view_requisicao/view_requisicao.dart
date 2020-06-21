@@ -1,14 +1,21 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sigfrotas/consts.dart';
+import 'package:sigfrotas/src/model/server/default_result.dart';
 import 'package:sigfrotas/src/model/state/requisicao_model.dart';
 import 'package:sigfrotas/src/utils/form_view.dart';
+import 'package:sigfrotas/src/view/motorista/view_requisicao/requisicao_validator.dart';
 import 'package:sigfrotas/src/view/shared/widget/config_tiles/composed_text_tile.dart';
 import 'package:sigfrotas/src/view/shared/widget/config_tiles/multi_option_controll.dart';
+import 'package:sigfrotas/src/view/shared/widget/config_tiles/text_tile.dart';
 import 'package:sigfrotas/src/view/shared/widget/config_tiles/toggleable_title.dart';
-import 'package:sigfrotas/src/view/shared/widget/list_divider.dart';
 import 'package:sigfrotas/src/view/shared/widget/list_section_decorator.dart';
+import 'package:http/http.dart' as http;
+
+import 'package:sigfrotas/src/services/service_req.dart';
 
 class ViewRequisicao extends StatefulWidget {
   const ViewRequisicao({
@@ -72,7 +79,23 @@ class _ViewRequisicaoState extends State<ViewRequisicao> with WillPopForm {
                 "Enviar",
                 style: Get.textTheme.button,
               ),
-              onPressed: doSave,
+              onPressed: () async {
+                final state = _formKey.currentState;
+                if (state.validate()) {
+                  state.save();
+                  final dio = Get.find<Dio>();
+                  final service = ServiceReq(dio);
+
+                  try {
+                    final r = await service.postReq(model);
+                    if (r is DefaultResult) {
+                      Get.back(result: r);
+                    }
+                  } catch (ex) {
+                    print(ex);
+                  }
+                }
+              },
             )
           ],
         ),
@@ -82,21 +105,33 @@ class _ViewRequisicaoState extends State<ViewRequisicao> with WillPopForm {
             key: _formKey,
             child: ListView(
               children: <Widget>[
-                ComposedTextTile(
+                TextTile(
                   icon: Icon(Icons.timeline, color: Colors.teal),
                   label: "KM Inicial",
                   hint: "100 km",
                   initialValue: model.kmInicial,
-                  validator: (String km) {},
-                  onChanged: (String km) {},
+                  validator: RequisicaoValidate.validateKm,
+                  onChanged: (String km) {
+                    model.kmInicial = km;
+                  },
+                  inputType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter.digitsOnly,
+                  ],
+                  trailingWidth: 100,
                 ),
-                ComposedTextTile(
+                TextTile(
                   icon: Icon(Icons.timeline, color: Colors.red),
                   label: "KM Final",
                   hint: "100 km",
                   initialValue: model.kmTermino,
-                  validator: (String km) {},
-                  onChanged: (String km) {},
+                  validator: RequisicaoValidate.validateKm,
+                  onChanged: (String km) => model.kmTermino = km,
+                  inputType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter.digitsOnly,
+                  ],
+                  trailingWidth: 100,
                 ),
                 ListSectionDecorator(
                   label: "Lataria",

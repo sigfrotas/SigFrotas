@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lib_observer/lib_observer.dart';
 import 'package:sigfrotas/consts.dart';
+import 'package:sigfrotas/src/model/server/default_result.dart';
 import 'package:sigfrotas/src/model/server/model_veiculos.dart';
 import 'package:sigfrotas/src/model/server/requisicao.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
@@ -54,12 +55,14 @@ class ViewListVeiculo extends StatelessWidget {
                           leading: Icon(Icons.directions_car),
                           title: Text(veiculo.prefixo),
                           trailing: Text(veiculo.placa),
-                          onTap: () => Get.to<ViewRequisicao>(
-                            ViewRequisicao(
-                              placa: veiculo.placa,
-                              prefixo: veiculo.prefixo,
-                            ),
-                          ),
+                          onTap: () async {
+                            final r = await Get.to<DefaultResult>(
+                              ViewRequisicao(
+                                placa: veiculo.placa,
+                                prefixo: veiculo.prefixo,
+                              ),
+                            );
+                          },
                         )
                     ],
                   );

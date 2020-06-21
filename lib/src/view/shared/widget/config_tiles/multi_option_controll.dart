@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sigfrotas/src/view/shared/widget/list_section_decorator.dart';
 
-class MultiOptionControll extends StatefulWidget {
+class MultiOptionControll extends StatelessWidget {
   const MultiOptionControll({
     @required this.initValue,
     @required this.onValueChanged,
@@ -19,19 +19,6 @@ class MultiOptionControll extends StatefulWidget {
   final Map<int, Widget> children;
 
   @override
-  _MultiOptionControllState createState() => _MultiOptionControllState();
-}
-
-class _MultiOptionControllState extends State<MultiOptionControll> {
-  int _value;
-
-  @override
-  void initState() {
-    _value = widget.initValue;
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +26,7 @@ class _MultiOptionControllState extends State<MultiOptionControll> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
           child: Text(
-            widget.label,
+            label,
             textAlign: TextAlign.start,
             style: Get.textTheme.subtitle1,
           ),
@@ -48,9 +35,9 @@ class _MultiOptionControllState extends State<MultiOptionControll> {
           width: double.maxFinite,
           padding: const EdgeInsets.only(bottom: 16),
           child: CupertinoSegmentedControl<int>(
-            groupValue: _value,
-            onValueChanged: widget.onValueChanged,
-            children: widget.children,
+            groupValue: initValue,
+            onValueChanged: onValueChanged,
+            children: children,
           ),
         ),
       ],
