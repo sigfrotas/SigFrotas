@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:lib_observer/lib_observer.dart';
 import 'package:sigfrotas/consts.dart';
-import 'package:sigfrotas/src/view/splash/splash_page.dart';
+import 'package:sigfrotas/src/model/vault_data.dart';
+import 'package:sigfrotas/src/utils/vault.dart';
+import 'package:sigfrotas/src/view/shared/branch_view.dart/branch_view.dart';
 
 void main() async {
   runApp(
@@ -37,7 +40,10 @@ class MyApp extends StatelessWidget {
           unselectedLabelColor: Colors.black45,
         ),
       ),
-      home: SplashScreen(),
+      home: FutureObserver<VaultData>(
+        future: Vault.getDefaultInfo(),
+        onSuccess: (_, data) => BranchView(data: data),
+      ),
     );
   }
 }
