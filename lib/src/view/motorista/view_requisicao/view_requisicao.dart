@@ -1,10 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sigfrotas/consts.dart';
-import 'package:sigfrotas/src/model/server/default_result.dart';
 import 'package:sigfrotas/src/model/state/requisicao_model.dart';
 import 'package:sigfrotas/src/utils/form_view.dart';
 import 'package:sigfrotas/src/view/motorista/view_requisicao/requisicao_validator.dart';
@@ -13,9 +11,6 @@ import 'package:sigfrotas/src/view/shared/widget/config_tiles/multi_option_contr
 import 'package:sigfrotas/src/view/shared/widget/config_tiles/text_tile.dart';
 import 'package:sigfrotas/src/view/shared/widget/config_tiles/toggleable_title.dart';
 import 'package:sigfrotas/src/view/shared/widget/list_section_decorator.dart';
-import 'package:http/http.dart' as http;
-
-import 'package:sigfrotas/src/services/service_req.dart';
 
 class ViewRequisicao extends StatefulWidget {
   const ViewRequisicao({
@@ -83,17 +78,19 @@ class _ViewRequisicaoState extends State<ViewRequisicao> with WillPopForm {
                 final state = _formKey.currentState;
                 if (state.validate()) {
                   state.save();
-                  final dio = Get.find<Dio>();
-                  final service = ServiceReq(dio);
+
+                  ///TODO - Chamar server aqui
+                  /* final dio = Get.find<Dio>();
+                  final service = ServiceRequisicao(dio);
 
                   try {
-                    final r = await service.postReq(model);
+                    final r = await service.postRequesicao(model);
                     if (r is DefaultResult) {
                       Get.back(result: r);
                     }
                   } catch (ex) {
                     print(ex);
-                  }
+                  } */
                 }
               },
             )

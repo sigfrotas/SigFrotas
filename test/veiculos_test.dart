@@ -1,12 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sigfrotas/src/model/server/veiculo.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
-import 'dart:convert';
 
 void main() {
   const String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTU5MjYxMzUxNH0.0LLiR6pMmzcViqRy6PBpx75cGeShbDewZ04CGtERcm8";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTU5Mjk0NDMzM30.VsPTtYnROjSrEqBi2UM7e1d_9IBpu1NH9arAM7iY8vc";
   final dio = Dio();
   dio.options.headers['Authorization'] = "Bearer $token";
 
@@ -15,12 +13,12 @@ void main() {
   test('carros', () async {
     final result = await service.listCarros();
     assert(result != null);
-    result.veiculo.forEach(print);
+    result.forEach(print);
   });
 
   test('motos', () async {
     final result = await service.listMotos();
     assert(result != null);
-    result.veiculo.forEach((v) => print(v.placa));
+    result.forEach((v) => print(v.placa));
   });
 }

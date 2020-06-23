@@ -4,8 +4,7 @@ import 'package:get/get.dart';
 import 'package:lib_observer/lib_observer.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/model/server/default_result.dart';
-import 'package:sigfrotas/src/model/server/model_veiculos.dart';
-import 'package:sigfrotas/src/model/server/requisicao.dart';
+import 'package:sigfrotas/src/model/server/veiculo.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
 import 'package:sigfrotas/src/view/motorista/view_requisicao/view_requisicao.dart';
 
@@ -14,12 +13,12 @@ class ViewListVeiculo extends StatelessWidget {
 
   final int tipoVeiculo;
 
-  Future<ModelVeiculos> listCarros() async {
+  Future<List<Veiculo>> listCarros() async {
     final service = ServiceVeiculos(Get.find<Dio>());
     return service.listCarros();
   }
 
-  Future<ModelVeiculos> listMotos() async {
+  Future<List<Veiculo>> listMotos() async {
     final service = ServiceVeiculos(Get.find<Dio>());
     return service.listMotos();
   }
@@ -43,14 +42,14 @@ class ViewListVeiculo extends StatelessWidget {
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(16),
-              child: FutureObserver<ModelVeiculos>(
+              child: FutureObserver<List<Veiculo>>(
                 future: tipoVeiculo == 0 ? listCarros() : listMotos(),
-                onSuccess: (_, ModelVeiculos list) {
-                  print(list.veiculo.length);
+                onSuccess: (_, List<Veiculo> list) {
+                  print(list.length);
                   return ListView(
                     shrinkWrap: true,
                     children: [
-                      for (final veiculo in list.veiculo)
+                      for (final veiculo in list)
                         ListTile(
                           leading: Icon(Icons.directions_car),
                           title: Text(veiculo.prefixo),

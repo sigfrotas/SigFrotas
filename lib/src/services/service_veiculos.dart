@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:sigfrotas/consts.dart';
-import 'package:sigfrotas/src/model/server/model_veiculos.dart';
+import 'package:sigfrotas/src/model/server/default_result.dart';
+import 'package:sigfrotas/src/model/server/veiculo.dart';
 
 part 'service_veiculos.g.dart';
 
@@ -9,9 +10,20 @@ part 'service_veiculos.g.dart';
 abstract class ServiceVeiculos {
   factory ServiceVeiculos(Dio dio, {String baseUrl}) = _ServiceVeiculos;
 
-  @GET('/motos')
-  Future<ModelVeiculos> listMotos();
+  /// /1 = Motos /0 = Locado
+  @GET('/1/0')
+  Future<List<Veiculo>> listMotos();
+  
+  /// / 0 = Carro /0 = Locado
+  @GET('/0/0')
+  Future<List<Veiculo>> listCarros();
 
-  @GET('/carros')
-  Future<ModelVeiculos> listCarros();
+  @POST('/0')
+  Future<DefaultResult> createCarro(@Body() Veiculo veiculo);
+
+  @POST('/1')
+  Future<DefaultResult> createMoto(@Body() Veiculo veiculo);
+
+  @DELETE('/{id}')
+  Future<void> deleteMoto(@Path() int id);
 }

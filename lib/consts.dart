@@ -1,5 +1,6 @@
 class Consts {
-  static const String baseUrl = "https://vtrserver.herokuapp.com";
+  static const String baseUrl = "http://127.0.0.1:3333";
+  // static const String baseUrl = "https://vtrserver.herokuapp.com";
   static const String registerUrl = "/auth/register";
   static const String loginUrl = "/auth/login";
 }

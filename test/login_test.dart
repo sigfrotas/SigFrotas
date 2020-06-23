@@ -11,7 +11,7 @@ void main() {
     final result = await service.register(
       {
         "nome": "Peçanha da Silva Santos",
-        "rgpm": "55444",
+        "rgpm": "66666",
         "pass": "123456",
         "isAdmin": true,
       },
@@ -24,16 +24,13 @@ void main() {
     try {
       final ModelLogin result = await service.login(
         {
-          "rgpm": 55444,
+          "rgpm": "22222",
           "pass": "123456",
         },
       );
-
       print(result);
     } catch (e) {
-      if (e is DioError) {
-        print(e.response.data);
-      }
+      print(e);
     }
   });
 
