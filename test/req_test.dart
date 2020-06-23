@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sigfrotas/src/model/server/model_requisicao.dart';
-import 'package:sigfrotas/src/model/state/requisicao_model.dart';
 import 'package:sigfrotas/src/services/service_requisicao.dart';
 
 void main() {
