@@ -20,16 +20,18 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: ThemeData(
+        fontFamily: 'Montserrat',
         primarySwatch: Colors.indigo,
         primaryColor: Colors.indigo,
         accentColor: Colors.red,
         appBarTheme: AppBarTheme(
           color: Colors.white,
-          elevation: 2,
+          elevation: 1,
           brightness: Brightness.light,
           iconTheme: ThemeData.light().iconTheme,
           textTheme: ThemeData.light().textTheme.copyWith(
                 headline6: const TextStyle(
+                  fontFamily: 'Montserrat',
                   fontSize: 20,
                   color: Colors.black,
                 ),

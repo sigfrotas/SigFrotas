@@ -8,10 +8,12 @@ class ComposedTextTile extends StatelessWidget {
     @required this.validator,
     @required this.icon,
     @required this.onChanged,
+    this.maxLength = 10,
     Key key,
   }) : super(key: key);
 
   final Icon icon;
+  final int maxLength;
   final String label, hint;
   final String initialValue;
   final Function(String validate) validator, onChanged;
@@ -24,6 +26,7 @@ class ComposedTextTile extends StatelessWidget {
         initialValue: initialValue,
         onChanged: onChanged,
         validator: validator,
+        maxLength: maxLength,
         textCapitalization: TextCapitalization.sentences,
         decoration: InputDecoration(
           labelText: label,

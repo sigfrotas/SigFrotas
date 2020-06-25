@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/model/server/default_result.dart';
+import 'package:sigfrotas/src/model/server/model_counter.dart';
 import 'package:sigfrotas/src/model/server/veiculo.dart';
 
 part 'service_veiculos.g.dart';
@@ -13,7 +14,7 @@ abstract class ServiceVeiculos {
   /// /1 = Motos /0 = Locado
   @GET('/1/0')
   Future<List<Veiculo>> listMotos();
-  
+
   /// / 0 = Carro /0 = Locado
   @GET('/0/0')
   Future<List<Veiculo>> listCarros();
@@ -26,4 +27,7 @@ abstract class ServiceVeiculos {
 
   @DELETE('/{id}')
   Future<void> deleteMoto(@Path() int id);
+
+  @GET('/counter')
+  Future<ModelCounter> getVeiculosCount();
 }

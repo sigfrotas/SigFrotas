@@ -1,89 +1,141 @@
-import 'package:flutter/foundation.dart';
-import 'package:json_annotation/json_annotation.dart';
-
-part 'model_requisicao.g.dart';
-
-@JsonSerializable(nullable: true)
 class ModelRequisicao {
   ModelRequisicao({
-    @required this.status,
-    @required this.km_inicial,
-    @required this.km_termino,
-    @required this.alteracao_lataria,
-    @required this.lataria_arranhado,
-    @required this.lataria_amassado,
-    @required this.lataria_trincado,
-    @required this.lataria_perfurado,
-    @required this.lataria_quebrado,
-    @required this.nivel_oleo,
-    @required this.qualidade_oleo,
-    @required this.vazamento_oleo,
-    @required this.local_vazamento_oleo,
-    @required this.nivel_agua,
-    @required this.vazamento_agua,
-    @required this.local_vazamento_agua,
-    @required this.luz_acesa,
-    @required this.luz_acesa_descricao,
-    @required this.alteracao_farois_dianteiros,
-    @required this.alteracao_farois_trazeiros,
-    @required this.dianteiro_direito_minima,
-    @required this.dianteiro_direito_media,
-    @required this.dianteiro_direito_maxima,
-    @required this.dianteiro_direito_pisca,
-    @required this.dianteiro_esquerdo_minima,
-    @required this.dianteiro_esquerdo_media,
-    @required this.dianteiro_esquerdo_maxima,
-    @required this.dianteiro_esquerdo_pisca,
-    @required this.trazeiro_direito_minima,
-    @required this.trazeiro_direito_media,
-    @required this.trazeiro_direito_maxima,
-    @required this.trazeiro_direito_pisca,
-    @required this.trazeiro_esquerdo_minima,
-    @required this.trazeiro_esquerdo_media,
-    @required this.trazeiro_esquerdo_maxima,
-    @required this.trazeiro_esquerdo_pisca,
-  });
-
-  factory ModelRequisicao.fromJson(Map<String, Object> json) {
-    return _$ModelRequisicaoFromJson(json);
+    this.status,
+    this.km_inicial,
+    this.km_termino,
+    this.alteracao_lataria = false,
+    this.nivel_oleo = 0,
+    this.qualidade_oleo = 0,
+    this.vazamento_oleo = false,
+    this.local_vazamento_oleo = "",
+    this.nivel_agua = 0,
+    this.vazamento_agua = false,
+    this.local_vazamento_agua = "",
+    this.luz_acesa = false,
+    this.luz_acesa_descricao = "",
+    this.alteracao_farois_dianteiros = false,
+    this.alteracao_farois_trazeiros = false,
+  }) {
+    diantEsq = [false, false, false, false];
+    diantDir = [false, false, false, false];
+    trazEsq = [false, false, false, false];
+    trazDir = [false, false, false, false];
+    latariaEstado = [false, false, false, false, false];
   }
 
-  final int status;
-  final String km_inicial;
-  final String km_termino;
-  final bool alteracao_lataria;
-  final bool lataria_arranhado;
-  final bool lataria_amassado;
-  final bool lataria_trincado;
-  final bool lataria_perfurado;
-  final bool lataria_quebrado;
-  final int nivel_oleo;
-  final int qualidade_oleo;
-  final int vazamento_oleo;
-  final String local_vazamento_oleo;
-  final int nivel_agua;
-  final bool vazamento_agua;
-  final String local_vazamento_agua;
-  final bool luz_acesa;
-  final String luz_acesa_descricao;
-  final bool alteracao_farois_dianteiros;
-  final bool alteracao_farois_trazeiros;
-  final bool dianteiro_direito_minima;
-  final bool dianteiro_direito_media;
-  final bool dianteiro_direito_maxima;
-  final bool dianteiro_direito_pisca;
-  final bool dianteiro_esquerdo_minima;
-  final bool dianteiro_esquerdo_media;
-  final bool dianteiro_esquerdo_maxima;
-  final bool dianteiro_esquerdo_pisca;
-  final bool trazeiro_direito_minima;
-  final bool trazeiro_direito_media;
-  final bool trazeiro_direito_maxima;
-  final bool trazeiro_direito_pisca;
-  final bool trazeiro_esquerdo_minima;
-  final bool trazeiro_esquerdo_media;
-  final bool trazeiro_esquerdo_maxima;
-  final bool trazeiro_esquerdo_pisca;
+  factory ModelRequisicao.fromJson(Map<String, dynamic> json) {
+    final model = ModelRequisicao(
+      status: json['status'] as int,
+      km_inicial: json['km_inicial'] as String,
+      km_termino: json['km_termino'] as String,
+      alteracao_lataria: json['alteracao_lataria'] as bool,
+      nivel_oleo: json['nivel_oleo'] as int,
+      qualidade_oleo: json['qualidade_oleo'] as int,
+      vazamento_oleo: json['vazamento_oleo'] as bool,
+      local_vazamento_oleo: json['local_vazamento_oleo'] as String,
+      nivel_agua: json['nivel_agua'] as int,
+      vazamento_agua: json['vazamento_agua'] as bool,
+      local_vazamento_agua: json['local_vazamento_agua'] as String,
+      luz_acesa: json['luz_acesa'] as bool,
+      luz_acesa_descricao: json['luz_acesa_descricao'] as String,
+      alteracao_farois_dianteiros: json['alteracao_farois_dianteiros'] as bool,
+      alteracao_farois_trazeiros: json['alteracao_farois_trazeiros'] as bool,
+    );
 
-  Map<String, Object> toJson() => _$ModelRequisicaoToJson(this);
+    model.latariaEstado = [
+      json['lataria_arranhado'] as bool,
+      json['lataria_amassado'] as bool,
+      json['lataria_trincado'] as bool,
+      json['lataria_perfurado'] as bool,
+      json['lataria_quebrado'] as bool,
+    ];
+
+    model.diantDir = [
+      json['dianteiro_direito_minima'] as bool,
+      json['dianteiro_direito_media'] as bool,
+      json['dianteiro_direito_maxima'] as bool,
+      json['dianteiro_direito_pisca'] as bool,
+    ];
+
+    model.diantEsq = [
+      json['dianteiro_esquerdo_minima'] as bool,
+      json['dianteiro_esquerdo_media'] as bool,
+      json['dianteiro_esquerdo_maxima'] as bool,
+      json['dianteiro_esquerdo_pisca'] as bool,
+    ];
+
+    model.trazDir = [
+      json['trazeiro_direito_minima'] as bool,
+      json['trazeiro_direito_media'] as bool,
+      json['trazeiro_direito_maxima'] as bool,
+      json['trazeiro_direito_pisca'] as bool,
+    ];
+
+    model.trazEsq = [
+      json['trazeiro_esquerdo_minima'] as bool,
+      json['trazeiro_esquerdo_media'] as bool,
+      json['trazeiro_esquerdo_maxima'] as bool,
+      json['trazeiro_esquerdo_pisca'] as bool,
+    ];
+
+    return model;
+  }
+
+  int status;
+  String km_inicial;
+  String km_termino;
+  bool alteracao_lataria;
+  int nivel_oleo;
+  int qualidade_oleo;
+  bool vazamento_oleo;
+  String local_vazamento_oleo;
+  int nivel_agua;
+  bool vazamento_agua;
+  String local_vazamento_agua;
+  bool luz_acesa;
+  String luz_acesa_descricao;
+  bool alteracao_farois_dianteiros;
+  bool alteracao_farois_trazeiros;
+  List<bool> diantEsq, diantDir, trazEsq, trazDir, latariaEstado;
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'status': this.status,
+      'km_inicial': this.km_inicial,
+      'km_termino': this.km_termino,
+      'alteracao_lataria': this.alteracao_lataria,
+      'lataria_arranhado': this.latariaEstado[0],
+      'lataria_amassado': this.latariaEstado[1],
+      'lataria_trincado': this.latariaEstado[2],
+      'lataria_perfurado': this.latariaEstado[3],
+      'lataria_quebrado': this.latariaEstado[4],
+      'nivel_oleo': this.nivel_oleo,
+      'qualidade_oleo': this.qualidade_oleo,
+      'vazamento_oleo': this.vazamento_oleo,
+      'local_vazamento_oleo': this.local_vazamento_oleo,
+      'nivel_agua': this.nivel_agua,
+      'vazamento_agua': this.vazamento_agua,
+      'local_vazamento_agua': this.local_vazamento_agua,
+      'luz_acesa': this.luz_acesa,
+      'luz_acesa_descricao': this.luz_acesa_descricao,
+      'alteracao_farois_dianteiros': this.alteracao_farois_dianteiros,
+      'alteracao_farois_trazeiros': this.alteracao_farois_trazeiros,
+      'dianteiro_direito_minima': this.diantDir[0],
+      'dianteiro_direito_media': this.diantDir[1],
+      'dianteiro_direito_maxima': this.diantDir[2],
+      'dianteiro_direito_pisca': this.diantDir[3],
+      'dianteiro_esquerdo_minima': this.diantEsq[0],
+      'dianteiro_esquerdo_media': this.diantEsq[1],
+      'dianteiro_esquerdo_maxima': this.diantEsq[2],
+      'dianteiro_esquerdo_pisca': this.diantEsq[3],
+      'trazeiro_direito_minima': this.trazDir[0],
+      'trazeiro_direito_media': this.trazDir[1],
+      'trazeiro_direito_maxima': this.trazDir[2],
+      'trazeiro_direito_pisca': this.trazDir[3],
+      'trazeiro_esquerdo_minima': this.trazEsq[0],
+      'trazeiro_esquerdo_media': this.trazEsq[1],
+      'trazeiro_esquerdo_maxima': this.trazEsq[2],
+      'trazeiro_esquerdo_pisca': this.trazEsq[3],
+    };
+  }
 }

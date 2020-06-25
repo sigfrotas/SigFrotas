@@ -67,7 +67,8 @@ class _LoginViewState extends State<LoginView> {
         }
       } catch (e) {
         if (e is DioError) {
-          Get.snackbar("Falha ao conectar", e.response.data[0]['message']);
+          print(e);
+//          Get.snackbar("Falha ao conectar", e.response.data[0]['message']);
         } else {
           print(e);
         }

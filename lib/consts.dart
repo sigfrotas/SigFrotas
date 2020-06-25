@@ -1,8 +1,8 @@
 class Consts {
-  static const String baseUrl = "http://127.0.0.1:3333";
-  // static const String baseUrl = "https://vtrserver.herokuapp.com";
+  static const String baseUrl = "https://vtrserver.herokuapp.com";
   static const String registerUrl = "/auth/register";
   static const String loginUrl = "/auth/login";
+  static const String motomec = "MOTOMEC";
 }
 
 class Arrays {
@@ -26,6 +26,8 @@ class Arrays {
     "Máxima",
     "Pisca",
   ];
+
+  static const List<String> unidades = ["7°BPM", "39° PEL", "40° PEL", "59°PPD"];
 }
 
 class Strings {
@@ -35,6 +37,7 @@ class Strings {
   static const String descartarAlteracoes = "Deseja descartar as alterações feitas?";
   static const String yes = "Sim";
   static const String no = "Não";
+  static const String novo = "Novo";
   static const String email = "email";
   static const String token = "token";
   static const String pass = "pass";
@@ -54,6 +57,26 @@ class Strings {
   static const String selecioneVeiculo = "Selecionar Veículo";
   static const String selecionarCarro = "Selecionar Automóvel";
   static const String selecionarMoto = "Selecionar Motocicleta";
+  static const String relatorioRapido = "Relatório Rápido";
+  static const String condutores = "Condutores";
+  static const String requisicaoMotos = "Requisição de Motos";
+  static const String registrados = "Registrados";
+  static const String novoAutomovel = "Novo automóvel";
+  static const String novoMoto = "Nova motocicleta";
   static const String prefixo = "Prefixo veículo";
   static const String placa = "Placa";
+  static const String opm = "OPM";
+  static const String descVeiculo = "Modelo";
+  static const String municipio = "Município";
+  static const String unidade = "Unidade";
+  static const String ativa = "Ativa";
+  static const String locada = "Locada";
+  static const String hintCarro = "Modelo e marca";
+  static const String local = "Local do Veículo";
+  static const String salvar = "Salvar";
+  static const String cancelar = "Cancelar";
+
+  ///Strings usadas em validação de campos
+  static const String campoBranco = "Campo está em branco";
+  static const String placaInvalida = "Placa inválida";
 }

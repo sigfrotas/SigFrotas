@@ -1,12 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:sigfrotas/consts.dart';
 
 part 'veiculo.g.dart';
 
-@immutable
 @JsonSerializable(nullable: true)
 class Veiculo {
-  const Veiculo({
+  Veiculo({
+    this.id,
     this.n,
     this.opm,
     this.placa,
@@ -21,16 +22,32 @@ class Veiculo {
 
   factory Veiculo.fromJson(Map<String, Object> json) => _$VeiculoFromJson(json);
 
-  final int n;
-  final String opm;
-  final String placa;
-  final String veiculo;
-  final String prefixo;
-  final String municipio;
-  final String unidade;
-  final bool ativa;
-  final bool locada;
-  final int tipo_veiculo;
+  factory Veiculo.forInsert({@required int tipo_veiculo}) {
+    return Veiculo(
+      n: 0,
+      opm: Arrays.unidades[0],
+      placa: "QEV-3403",
+      veiculo: "PÁLIO WEEKEND",
+      prefixo: "0708",
+      municipio: "REDENÇÃO",
+      unidade: Arrays.unidades[0],
+      ativa: true,
+      locada: false,
+      tipo_veiculo: tipo_veiculo,
+    );
+  }
+
+  int id;
+  int n;
+  String opm;
+  String placa;
+  String veiculo;
+  String prefixo;
+  String municipio;
+  String unidade;
+  bool ativa;
+  bool locada;
+  int tipo_veiculo;
 
   Map<String, Object> toJson() => _$VeiculoToJson(this);
 }

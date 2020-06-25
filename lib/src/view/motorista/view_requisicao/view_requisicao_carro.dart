@@ -1,9 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sigfrotas/consts.dart';
-import 'package:sigfrotas/src/model/state/requisicao_model.dart';
+import 'package:sigfrotas/src/model/server/default_result.dart';
+import 'package:sigfrotas/src/model/server/model_requisicao.dart';
+import 'package:sigfrotas/src/services/service_requisicao.dart';
 import 'package:sigfrotas/src/utils/form_view.dart';
 import 'package:sigfrotas/src/view/motorista/view_requisicao/requisicao_validator.dart';
 import 'package:sigfrotas/src/view/shared/widget/config_tiles/composed_text_tile.dart';
@@ -12,24 +15,20 @@ import 'package:sigfrotas/src/view/shared/widget/config_tiles/text_tile.dart';
 import 'package:sigfrotas/src/view/shared/widget/config_tiles/toggleable_title.dart';
 import 'package:sigfrotas/src/view/shared/widget/list_section_decorator.dart';
 
-class ViewRequisicao extends StatefulWidget {
-  const ViewRequisicao({
-    @required this.placa,
-    @required this.prefixo,
+class ViewRequisicaoCarro extends StatefulWidget {
+  const ViewRequisicaoCarro({
+    @required this.veiculo_id,
     Key key,
   }) : super(key: key);
 
-  final String placa, prefixo;
+  final int veiculo_id;
 
   @override
-  _ViewRequisicaoState createState() => _ViewRequisicaoState();
+  _ViewRequisicaoCarroState createState() => _ViewRequisicaoCarroState();
 }
 
-class _ViewRequisicaoState extends State<ViewRequisicao> with WillPopForm {
-  ///Gerar ServiceRequisicao
-  ///Enviar dados
-
-  ViewRequisicaoModel model;
+class _ViewRequisicaoCarroState extends State<ViewRequisicaoCarro> with WillPopForm {
+  ModelRequisicao model;
   final _formKey = GlobalKey<FormState>();
 
   final Map<int, Widget> bomMedioRuim = {
@@ -47,10 +46,7 @@ class _ViewRequisicaoState extends State<ViewRequisicao> with WillPopForm {
 
   @override
   void initState() {
-    model = ViewRequisicaoModel(
-      placa: widget.placa,
-      prefixo: widget.prefixo,
-    );
+    model = ModelRequisicao();
     super.initState();
   }
 
@@ -80,17 +76,17 @@ class _ViewRequisicaoState extends State<ViewRequisicao> with WillPopForm {
                   state.save();
 
                   ///TODO - Chamar server aqui
-                  /* final dio = Get.find<Dio>();
+                  final dio = Get.find<Dio>();
                   final service = ServiceRequisicao(dio);
 
                   try {
-                    final r = await service.postRequesicao(model);
+                    final r = await service.postRequesicao(widget.veiculo_id, model);
                     if (r is DefaultResult) {
                       Get.back(result: r);
                     }
                   } catch (ex) {
                     print(ex);
-                  } */
+                  }
                 }
               },
             )
@@ -106,10 +102,10 @@ class _ViewRequisicaoState extends State<ViewRequisicao> with WillPopForm {
                   icon: Icon(Icons.timeline, color: Colors.teal),
                   label: "KM Inicial",
                   hint: "100 km",
-                  initialValue: model.kmInicial,
+                  initialValue: model.km_inicial,
                   validator: RequisicaoValidate.validateKm,
                   onChanged: (String km) {
-                    model.kmInicial = km;
+                    model.km_inicial = km;
                   },
                   inputType: TextInputType.number,
                   inputFormatters: [
@@ -121,9 +117,9 @@ class _ViewRequisicaoState extends State<ViewRequisicao> with WillPopForm {
                   icon: Icon(Icons.timeline, color: Colors.red),
                   label: "KM Final",
                   hint: "100 km",
-                  initialValue: model.kmTermino,
+                  initialValue: model.km_termino,
                   validator: RequisicaoValidate.validateKm,
-                  onChanged: (String km) => model.kmTermino = km,
+                  onChanged: (String km) => model.km_termino = km,
                   inputType: TextInputType.number,
                   inputFormatters: [
                     WhitelistingTextInputFormatter.digitsOnly,
@@ -135,10 +131,10 @@ class _ViewRequisicaoState extends State<ViewRequisicao> with WillPopForm {
                 ),
                 SwitchListTile(
                   title: Text("Alteração na lataria"),
-                  value: model.alteracaoLataria,
-                  onChanged: (b) => setState(() => model.alteracaoLataria = b),
+                  value: model.alteracao_lataria,
+                  onChanged: (b) => setState(() => model.alteracao_lataria = b),
                 ),
-                if (model.alteracaoLataria)
+                if (model.alteracao_lataria)
                   Column(
                     children: <Widget>[
                       for (var i = 0; i < Arrays.latariaEstado.length; i++)
@@ -156,111 +152,111 @@ class _ViewRequisicaoState extends State<ViewRequisicao> with WillPopForm {
                 MultiOptionControll(
                   label: "Nível óleo",
                   children: bomMedioRuim,
-                  initValue: model.nivelOleo,
-                  onValueChanged: (int i) => setState(() => model.nivelOleo = i),
+                  initValue: model.nivel_oleo,
+                  onValueChanged: (int i) => setState(() => model.nivel_oleo = i),
                 ),
                 MultiOptionControll(
                   label: "Qualidade óleo",
                   children: bomMedioRuim,
-                  initValue: model.qualidadeOleo,
-                  onValueChanged: (int i) => setState(() => model.qualidadeOleo = i),
+                  initValue: model.qualidade_oleo,
+                  onValueChanged: (int i) => setState(() => model.qualidade_oleo = i),
                 ),
                 SwitchListTile(
                   title: Text("Há Vazamento de óleo"),
-                  value: model.vazamentoOleo,
-                  onChanged: (b) => setState(() => model.vazamentoOleo = b),
+                  value: model.vazamento_oleo,
+                  onChanged: (b) => setState(() => model.vazamento_oleo = b),
                 ),
-                if (model.vazamentoOleo)
+                if (model.vazamento_oleo)
                   ComposedTextTile(
                     icon: Icon(Icons.edit),
                     label: "Local de vazamento",
                     validator: (s) {},
-                    initialValue: model.localVazamentoOleo,
+                    initialValue: model.local_vazamento_oleo,
                     hint: "Porta malas",
-                    onChanged: (String s) => setState(() => model.localVazamentoOleo = s),
+                    onChanged: (String s) => setState(() => model.local_vazamento_oleo = s),
                   ),
                 ListSectionDecorator(label: "Arrefecimento"),
                 MultiOptionControll(
                   label: "Nível de água",
                   children: bomMedioRuim,
-                  initValue: model.nivelAgua,
-                  onValueChanged: (int i) => setState(() => model.nivelAgua = i),
+                  initValue: model.nivel_agua,
+                  onValueChanged: (int i) => setState(() => model.nivel_agua = i),
                 ),
                 SwitchListTile(
                   title: Text("Há Vazamento de água"),
-                  value: model.vazamentoAgua,
-                  onChanged: (b) => setState(() => model.vazamentoAgua = b),
+                  value: model.vazamento_agua,
+                  onChanged: (b) => setState(() => model.vazamento_agua = b),
                 ),
-                if (model.vazamentoAgua)
+                if (model.vazamento_agua)
                   ComposedTextTile(
                     label: "Local Vazamento Água",
                     hint: "local de vazametno",
-                    onChanged: (s) => setState(() => model.localVazamentoAgua = s),
-                    initialValue: model.localVazamentoAgua,
+                    onChanged: (s) => setState(() => model.local_vazamento_agua = s),
+                    initialValue: model.local_vazamento_agua,
                     validator: (s) {},
                     icon: Icon(Icons.edit, color: Colors.red),
                   ),
                 ListSectionDecorator(label: "Painel de controle"),
                 SwitchListTile(
                   title: Text('Luz acesa durante condução'),
-                  value: model.luzAcesa,
-                  onChanged: (b) => setState(() => model.luzAcesa = b),
+                  value: model.luz_acesa,
+                  onChanged: (b) => setState(() => model.luz_acesa = b),
                 ),
-                if (model.luzAcesa)
+                if (model.luz_acesa)
                   ComposedTextTile(
                     label: "Local luz acesa",
                     hint: "luz de ...",
-                    onChanged: (s) => setState(() => model.luzAcesaDescricao = s),
-                    initialValue: model.localVazamentoAgua,
+                    onChanged: (s) => setState(() => model.luz_acesa_descricao = s),
+                    initialValue: model.luz_acesa_descricao,
                     validator: (s) {},
                     icon: Icon(Icons.edit, color: Colors.red),
                   ),
                 SwitchListTile(
                   title: Text('Alterações farois dianteiros'),
-                  value: model.alteracaoFaroisDianteiros,
-                  onChanged: (b) => setState(() => model.alteracaoFaroisDianteiros = b),
+                  value: model.alteracao_farois_dianteiros,
+                  onChanged: (b) => setState(() => model.alteracao_farois_dianteiros = b),
                 ),
-                if (model.alteracaoFaroisDianteiros)
+                if (model.alteracao_farois_trazeiros)
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       ToggleableTile(
                         labels: Arrays.farolEstado,
-                        isSelected: model.frontalEsquerdo,
+                        isSelected: model.diantEsq,
                         onPressed: (int pos) => setState(
-                          () => model.frontalEsquerdo[pos] = !model.frontalEsquerdo[pos],
+                          () => model.diantEsq[pos] = !model.diantEsq[pos],
                         ),
                       ),
                       ToggleableTile(
-                        isSelected: model.frontalDireito,
+                        isSelected: model.diantDir,
                         labels: Arrays.farolEstado,
                         onPressed: (int pos) => setState(
-                          () => model.frontalDireito[pos] = !model.frontalDireito[pos],
+                          () => model.diantDir[pos] = !model.diantDir[pos],
                         ),
                       ),
                     ],
                   ),
                 SwitchListTile(
                   title: Text('Alterações farois trazeiros'),
-                  value: model.alteracaoFaroisTrazeiros,
-                  onChanged: (b) => setState(() => model.alteracaoFaroisTrazeiros = b),
+                  value: model.alteracao_farois_trazeiros,
+                  onChanged: (b) => setState(() => model.alteracao_farois_trazeiros = b),
                 ),
-                if (model.alteracaoFaroisTrazeiros)
+                if (model.alteracao_farois_trazeiros)
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       ToggleableTile(
                         labels: Arrays.farolEstado,
-                        isSelected: model.trazeiroEsquerdo,
+                        isSelected: model.trazEsq,
                         onPressed: (int pos) => setState(
-                          () => model.trazeiroEsquerdo[pos] = !model.trazeiroEsquerdo[pos],
+                          () => model.trazEsq[pos] = !model.trazEsq[pos],
                         ),
                       ),
                       ToggleableTile(
-                        isSelected: model.trazeiroDireito,
+                        isSelected: model.trazDir,
                         labels: Arrays.farolEstado,
                         onPressed: (int pos) => setState(
-                          () => model.trazeiroDireito[pos] = !model.trazeiroDireito[pos],
+                          () => model.trazDir[pos] = !model.trazDir[pos],
                         ),
                       ),
                     ],
