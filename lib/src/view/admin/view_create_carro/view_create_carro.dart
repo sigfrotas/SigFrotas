@@ -28,7 +28,6 @@ class ViewCreateVeiculo extends StatefulWidget {
   _ViewCreateVeiculoState createState() => _ViewCreateVeiculoState();
 }
 
-//TODO - Implementar tela de cadastro de veículos
 class _ViewCreateVeiculoState extends State<ViewCreateVeiculo> with WillPopForm {
   Veiculo veiculo;
   final _formKey = GlobalKey<FormState>();

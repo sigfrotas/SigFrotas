@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Consts {
   static const String baseUrl = "https://vtrserver.herokuapp.com";
   static const String registerUrl = "/auth/register";
@@ -25,6 +27,18 @@ class Arrays {
     "Média",
     "Máxima",
     "Pisca",
+  ];
+
+  static const List<String> statusRequisicao = [
+    "${Strings.emAberto}",
+    "${Strings.finalizadas}",
+    "${Strings.canceladas}",
+  ];
+
+  static const List<Color> statusRequisicaoColors = [
+    Colors.orange,
+    Colors.green,
+    Colors.blueGrey,
   ];
 
   static const List<String> unidades = ["7°BPM", "39° PEL", "40° PEL", "59°PPD"];
@@ -75,6 +89,10 @@ class Strings {
   static const String local = "Local do Veículo";
   static const String salvar = "Salvar";
   static const String cancelar = "Cancelar";
+  static const String veiculosManutencao = "Veículos em manutenção";
+  static const String emAberto = "Em Aberto";
+  static const String finalizadas = "Finalizadas";
+  static const String canceladas = "Canceladas";
 
   ///Strings usadas em validação de campos
   static const String campoBranco = "Campo está em branco";

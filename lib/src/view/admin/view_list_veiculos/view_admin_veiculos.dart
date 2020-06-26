@@ -64,6 +64,7 @@ class _ViewAdminVeiculosState extends State<ViewAdminVeiculos> with SingleTicker
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
         icon: const Icon(Icons.add),
         onPressed: () => callViewCreateVeiculo(controller.index),

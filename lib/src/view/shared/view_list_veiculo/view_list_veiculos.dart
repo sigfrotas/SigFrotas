@@ -14,6 +14,10 @@ class ViewListVeiculos extends StatelessWidget {
   final Icon icon;
   final Function(Veiculo veiculo) onTap;
 
+  Widget _statusVeiculo(bool ativa, bool locada) {
+    return Text("${ativa ? 'Ativa' : 'inativa'} | ${locada ? 'Locada' : 'Disponível'}");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,6 +31,7 @@ class ViewListVeiculos extends StatelessWidget {
           return ListTile(
             leading: icon,
             title: Text(veiculo.prefixo),
+            subtitle: _statusVeiculo(veiculo.ativa, veiculo.locada),
             trailing: Text(veiculo.placa),
             onTap: () => onTap(veiculo),
           );

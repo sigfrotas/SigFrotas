@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/view/admin/view_counter.dart';
+import 'package:sigfrotas/src/view/admin/view_manutencao/view_manutencao.dart';
 import 'package:sigfrotas/src/view/shared/view_base.dart';
 import 'package:sigfrotas/src/view/shared/widget/bottom_menu_item.dart';
 
@@ -17,7 +18,6 @@ class ViewAdmin extends StatelessWidget {
           icon: Icons.directions_car,
           label: Strings.veiculos,
           onTap: () async {
-
             ///TODO - Verificar se deve tratar algum retorno daqui
             final r = await Get.to<void>(ViewAdminVeiculos());
           },
@@ -25,7 +25,9 @@ class ViewAdmin extends StatelessWidget {
         BottomMenuItem(
           icon: Icons.build,
           label: Strings.manutencao,
-          onTap: () {},
+          onTap: () async {
+            await Get.to<void>(ViewManutencao());
+          },
         ),
         BottomMenuItem(
           icon: Icons.chrome_reader_mode,
