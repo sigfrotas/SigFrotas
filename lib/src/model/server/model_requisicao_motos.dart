@@ -7,7 +7,7 @@ class ModelRequisicaoMoto {
   int status;
   int veiculo_id;
   String prefixo;
-  int km;
+  String km;
   int limpeza;
   int circunstancia;
   int ladoDireito;

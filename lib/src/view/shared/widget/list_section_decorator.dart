@@ -6,17 +6,19 @@ class ListSectionDecorator extends StatelessWidget {
   const ListSectionDecorator({
     @required this.label,
     this.padding = const EdgeInsets.all(16),
+    this.hasDivider = true,
     Key key,
   }) : super(key: key);
 
   final String label;
   final EdgeInsets padding;
+  final bool hasDivider;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        ListDivider(),
+        if (hasDivider) ListDivider(),
         Container(
           padding: padding,
           width: double.maxFinite,

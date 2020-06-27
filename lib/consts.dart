@@ -16,6 +16,21 @@ class Arrays {
     "Quebrado",
   ];
 
+  static const List<String> latariaEstadoMoto = [
+    "Ok",
+    "Batido",
+    "Riscado",
+    "Quebrado",
+  ];
+
+  static const List<String> pneuEstadoMoto = [
+    "Novo",
+    "Bom",
+    "Medio",
+    "Careca",
+    "Furado",
+  ];
+
   static const List<String> nivelItems = [
     "Bom",
     "Medio",
@@ -127,5 +142,30 @@ class Maps {
     0: Text(Arrays.nivelItems[0]),
     1: Text(Arrays.nivelItems[1]),
     2: Text(Arrays.nivelItems[2]),
+  };
+
+  static final Map<int, Widget> limpezaMoto = {
+    0: Text("Limpa"),
+    1: Text("Suja"),
+  };
+
+  static final Map<int, Widget> circunstancia = {
+    0: Text("Ordinário"),
+    1: Text("Extraordinário"),
+  };
+
+  static final Map<int, Widget> estadoLatariaMoto = {
+    0: Text(Arrays.latariaEstadoMoto[0]),
+    1: Text(Arrays.latariaEstadoMoto[1]),
+    2: Text(Arrays.latariaEstadoMoto[2]),
+    3: Text(Arrays.latariaEstadoMoto[3]),
+  };
+
+  static final Map<int, Widget> pneuEstadoMoto = {
+    0: Text(Arrays.pneuEstadoMoto[0]),
+    1: Text(Arrays.pneuEstadoMoto[1]),
+    2: Text(Arrays.pneuEstadoMoto[2]),
+    3: Text(Arrays.pneuEstadoMoto[3]),
+    4: Text(Arrays.pneuEstadoMoto[4]),
   };
 }

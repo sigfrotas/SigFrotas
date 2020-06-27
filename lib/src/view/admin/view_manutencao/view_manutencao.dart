@@ -10,6 +10,7 @@ import 'package:sigfrotas/src/services/service_requisicao.dart';
 import 'package:sigfrotas/src/services/service_requisicao_motos.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao/view_manutencao_list_carro.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao/view_manutencao_list_moto.dart';
+import 'package:sigfrotas/src/view/admin/view_manutencao_motos_detalhe/view_manutencao_motos_detalhe.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao_detalhe/view_manutencao_detalhe.dart';
 
 class ViewManutencao extends StatefulWidget {
@@ -119,8 +120,8 @@ class _ViewManutencaoState extends State<ViewManutencao> with SingleTickerProvid
                       ),
                       ViewManutencaoListMoto(
                         requisicoes: reqMotos,
-                        onItemTap: (_) {
-                          Get.snackbar("Não implementado", "Item ainda não implementado");
+                        onItemTap: (m) {
+                          Get.to<void>(ViewManutencaoMotosDetalhe(requisicao: m));
                         },
                       ),
                     ],
