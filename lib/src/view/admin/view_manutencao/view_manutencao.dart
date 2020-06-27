@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,9 +8,9 @@ import 'package:sigfrotas/src/model/server/model_requisicao.dart';
 import 'package:sigfrotas/src/model/server/model_requisicao_motos.dart';
 import 'package:sigfrotas/src/services/service_requisicao.dart';
 import 'package:sigfrotas/src/services/service_requisicao_motos.dart';
-import 'package:sigfrotas/src/view/admin/view_manutencao_detalhe/view_manutencao_detalhe.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao/view_manutencao_list_carro.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao/view_manutencao_list_moto.dart';
+import 'package:sigfrotas/src/view/admin/view_manutencao_detalhe/view_manutencao_detalhe.dart';
 
 class ViewManutencao extends StatefulWidget {
   @override
@@ -21,17 +20,14 @@ class ViewManutencao extends StatefulWidget {
 class _ViewManutencaoState extends State<ViewManutencao> with SingleTickerProviderStateMixin {
   TabController controller;
   int pos;
-  final dio = Get.find<Dio>();
   List<ModelRequisicao> requisicoes;
 
   Future<List<ModelRequisicao>> listRequisicaoCarros() async {
-    final service = ServiceRequisicao(dio);
-    return await service.listRequisicoesByStatus(pos);
+    return await Get.find<ServiceRequisicao>().listRequisicoesByStatus(pos);
   }
 
   Future<List<ModelRequisicaoMoto>> listRequisicaoMotos() async {
-    final service = ServiceRequisicaoMotos(dio);
-    return await service.listRequisicoesByStatus(pos);
+    return await Get.find<ServiceRequisicaoMotos>().listRequisicoesByStatus(pos);
   }
 
   @override

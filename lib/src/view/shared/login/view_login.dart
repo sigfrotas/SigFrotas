@@ -7,6 +7,7 @@ import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/model/server/model_login.dart';
 import 'package:sigfrotas/src/model/vault_data.dart';
 import 'package:sigfrotas/src/services/service_login.dart';
+import 'package:sigfrotas/src/utils/injector.dart';
 import 'package:sigfrotas/src/utils/vault.dart';
 import 'package:sigfrotas/src/view/shared/dialogs.dart';
 import 'package:sigfrotas/src/view/shared/form_validation.dart';
@@ -59,8 +60,8 @@ class _LoginViewState extends State<LoginView> {
             isAdmin: result.isAdmin,
           );
 
-          ///Injeta intancia do Dio já com token
-          Get.put<Dio>(Dio()..options.headers['Authorization'] = "Bearer ${result.token}");
+          ///Injeta Dio e services
+          Injector.inject(result.token);
           Navigator.of(_globalKey.currentContext, rootNavigator: true).pop();
           final VaultData data = await Vault.getDefaultInfo();
           widget.setPosition(data.isAdmin ? 2 : 3, data.isAdmin);

@@ -3,6 +3,7 @@ import 'package:sigfrotas/src/model/server/veiculo.dart';
 
 class ModelRequisicao {
   ModelRequisicao({
+    this.id,
     this.status,
     this.km_inicial,
     this.km_termino,
@@ -28,6 +29,7 @@ class ModelRequisicao {
 
   factory ModelRequisicao.fromJson(Map<String, dynamic> json) {
     final model = ModelRequisicao(
+      id: json['id'] as int,
       status: json['status'] as int,
       km_inicial: json['km_inicial'] as String,
       km_termino: json['km_termino'] as String,
@@ -88,6 +90,7 @@ class ModelRequisicao {
     return model;
   }
 
+  int id;
   int status;
   String km_inicial;
   String km_termino;
@@ -109,6 +112,7 @@ class ModelRequisicao {
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
+      'id': this.id,
       'status': this.status,
       'km_inicial': this.km_inicial,
       'km_termino': this.km_termino,

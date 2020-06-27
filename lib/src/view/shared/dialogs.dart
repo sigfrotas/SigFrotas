@@ -135,7 +135,7 @@ class Dialogs {
     );
   }
 
-  static Future<String> showOptionsDialog({
+  static Future<int> showOptionsDialog({
     @required BuildContext context,
     @required List<String> options,
     @required String title,
@@ -151,7 +151,7 @@ class Dialogs {
           for (int i = 0; i < options.length; i++)
             SimpleDialogOption(
               child: Text(options[i]),
-              onPressed: () => navigator.pop(options[i]),
+              onPressed: () => navigator.pop(i),
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
             )
         ],

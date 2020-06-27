@@ -17,7 +17,7 @@ class ViewAdminVeiculos extends StatefulWidget {
 }
 
 class _ViewAdminVeiculosState extends State<ViewAdminVeiculos> with SingleTickerProviderStateMixin {
-  ServiceVeiculos get _service => ServiceVeiculos(Get.find<Dio>());
+  ServiceVeiculos get _service => Get.find<ServiceVeiculos>();
 
   final _memo = AsyncMemoizer<List<Object>>();
 

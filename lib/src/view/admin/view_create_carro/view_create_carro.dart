@@ -66,8 +66,7 @@ class _ViewCreateVeiculoState extends State<ViewCreateVeiculo> with WillPopForm 
                       if (formState.validate()) {
                         formState.save();
 
-                        final dio = Get.find<Dio>();
-                        final service = ServiceVeiculos(dio);
+                        final service = Get.find<ServiceVeiculos>();
 
                         final result = widget.tipo_veiculo == 0
                             ? await service.createCarro(veiculo)

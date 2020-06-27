@@ -23,4 +23,24 @@ class AsyncDialog {
       Navigator.of(globalKey.currentContext, rootNavigator: true).pop();
     }
   }
+
+  static Future<void> run(
+    BuildContext context,
+    GlobalKey<State> globalKey,
+    Future<void> Function() doAsync, {
+    void Function(Exception e) onError,
+  }) async {
+    Dialogs.showAwaitingDialog(context: context, key: globalKey);
+    try {
+      await doAsync();
+    } catch (e) {
+      if (onError != null) {
+        onError(e);
+      } else {
+        print(e);
+      }
+    } finally {
+      Navigator.of(globalKey.currentContext, rootNavigator: true).pop();
+    }
+  }
 }

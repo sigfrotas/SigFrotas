@@ -1,5 +1,4 @@
 import 'package:async/async.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -7,7 +6,6 @@ import 'package:lib_observer/future_observer.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/model/server/model_counter.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
-import 'package:sigfrotas/src/view/shared/widget/list_divider.dart';
 
 class ViewCounter extends StatefulWidget {
   @override
@@ -18,8 +16,7 @@ class _ViewCounterState extends State<ViewCounter> {
   static final _memo = AsyncMemoizer<ModelCounter>();
 
   Future<ModelCounter> fetchCounter() async {
-    final dio = Get.find<Dio>();
-    final service = ServiceVeiculos(dio);
+    final service = Get.find<ServiceVeiculos>();
     return _memo.runOnce(() async => await service.getVeiculosCount());
   }
 
