@@ -1,10 +1,9 @@
 import 'package:async/async.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lib_observer/lib_observer.dart';
 import 'package:sigfrotas/consts.dart';
-import 'package:sigfrotas/src/model/server/veiculo.dart';
+import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
 import 'package:sigfrotas/src/view/admin/view_create_carro/view_create_carro.dart';
 import 'package:sigfrotas/src/view/shared/view_list_veiculo/view_list_veiculos.dart';
@@ -40,7 +39,7 @@ class _ViewAdminVeiculosState extends State<ViewAdminVeiculos> with SingleTicker
   }
 
   void callViewCreateVeiculo(int tipo) async {
-    final r = await Get.to<Veiculo>(ViewCreateVeiculo(tipo_veiculo: tipo));
+    final r = await Get.to<ModelVeiculo>(ViewCreateVeiculo(tipo_veiculo: tipo));
 
     ///TODO - Verificar se deve tratar o retorno
   }
@@ -74,8 +73,8 @@ class _ViewAdminVeiculosState extends State<ViewAdminVeiculos> with SingleTicker
         future: listData(),
         onError: (_, e) => Text("Erro: ${e.toString()}"),
         onSuccess: (_, data) {
-          final carros = data[0] as List<Veiculo>;
-          final motos = data[1] as List<Veiculo>;
+          final carros = data[0] as List<ModelVeiculo>;
+          final motos = data[1] as List<ModelVeiculo>;
           return Container(
             child: TabBarView(
               controller: controller,

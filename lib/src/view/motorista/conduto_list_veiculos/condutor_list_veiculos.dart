@@ -1,18 +1,20 @@
 import 'package:async/async.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lib_observer/lib_observer.dart';
 import 'package:sigfrotas/consts.dart';
+import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
 import 'package:sigfrotas/src/model/server/default_result.dart';
-import 'package:sigfrotas/src/model/server/veiculo.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
 import 'package:sigfrotas/src/view/motorista/view_requisicao/view_requisicao_carro.dart';
 import 'package:sigfrotas/src/view/motorista/view_requisicao/view_requisicao_moto.dart';
 import 'package:sigfrotas/src/view/shared/view_list_veiculo/view_list_veiculos.dart';
 
 class CondutorListVeiculos extends StatefulWidget {
-  const CondutorListVeiculos({Key key, this.tipoVeiculo}) : super(key: key);
+  const CondutorListVeiculos({
+    @required this.tipoVeiculo,
+    Key key,
+  }) : super(key: key);
 
   final int tipoVeiculo;
 
@@ -21,16 +23,16 @@ class CondutorListVeiculos extends StatefulWidget {
 }
 
 class _CondutorListVeiculosState extends State<CondutorListVeiculos> {
-  static final _memo = AsyncMemoizer<List<Veiculo>>();
+  final _memo = AsyncMemoizer<List<ModelVeiculo>>();
 
-  Future<List<Veiculo>> listCarros() async {
+  Future<List<ModelVeiculo>> listCarros() async {
     final service = Get.find<ServiceVeiculos>();
     return _memo.runOnce(() async {
       return await service.listCarros();
     });
   }
 
-  Future<List<Veiculo>> listMotos() async {
+  Future<List<ModelVeiculo>> listMotos() async {
     final service = Get.find<ServiceVeiculos>();
     return _memo.runOnce(() async => service.listMotos());
   }
@@ -41,39 +43,31 @@ class _CondutorListVeiculosState extends State<CondutorListVeiculos> {
       appBar: AppBar(
         title: Text(widget.tipoVeiculo == 0 ? Strings.selecionarCarro : Strings.selecionarMoto),
       ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.all(16),
-            child: ListTile(
-              leading: const Icon(null),
-              title: Text(Strings.prefixo),
-              trailing: Text(Strings.placa),
-            ),
+      body: Container(
+        child: SingleChildScrollView(
+          child: FutureObserver<List<ModelVeiculo>>(
+            future: widget.tipoVeiculo == 0 ? listCarros() : listMotos(),
+            onError: (_, Error e) => Text("Erro: ${e.toString()}"),
+            onSuccess: (_, List<ModelVeiculo> list) {
+              return Center(
+                child: ViewListVeiculos(
+                  icon: Icon(
+                    widget.tipoVeiculo == 0 ? Icons.directions_car : Icons.motorcycle,
+                    color: Get.theme.accentColor,
+                  ),
+                  veiculos: list,
+                  onTap: (ModelVeiculo v) async {
+                    final r = await Get.to<DefaultResult>(
+                      widget.tipoVeiculo == 0
+                          ? ViewRequisicaoCarro(veiculo_id: v.id)
+                          : ViewRequisicaoMotos(veiculo_id: v.id),
+                    );
+                  },
+                ),
+              );
+            },
           ),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              child: FutureObserver<List<Veiculo>>(
-                future: widget.tipoVeiculo == 0 ? listCarros() : listMotos(),
-                onError: (_, Error e) => Text("Erro: ${e.toString()}"),
-                onSuccess: (_, List<Veiculo> list) {
-                  return ViewListVeiculos(
-                    icon: Icon(Icons.directions_car),
-                    veiculos: list,
-                    onTap: (Veiculo v) async {
-                      final r = await Get.to<DefaultResult>(
-                        widget.tipoVeiculo == 0
-                            ? ViewRequisicaoCarro(veiculo_id: v.id)
-                            : ViewRequisicaoMotos(veiculo_id: v.id),
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

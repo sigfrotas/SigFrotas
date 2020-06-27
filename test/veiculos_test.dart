@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
 import 'package:sigfrotas/src/model/server/model_counter.dart';
-import 'package:sigfrotas/src/model/server/veiculo.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
 
 void main() {
   const String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjMsImlhdCI6MTU5MzA1MTQ2M30.hnjzbdDvOgLsZHGMiPk7WKuVB6zaRVPue4sXmfxbu9c";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjIsImlhdCI6MTU5MzI4MjU3NX0.0oQEp7TOIVov4kL8fFr2tHLyRGb6Sq7lWBmjUzGgYnY";
   final dio = Dio();
 
   dio.options.headers['Authorization'] = "Bearer $token";
@@ -14,21 +14,29 @@ void main() {
   final service = ServiceVeiculos(dio /*, baseUrl: "http://127.0.0.1:3333/veiculos"*/);
 
   test('carros', () async {
-    final result = await service.listCarros();
-    assert(result != null);
-    result.forEach((v) => print(v.placa));
+    try {
+      final result = await service.listCarros();
+      assert(result != null);
+      result.forEach((v) => print(v.placa));
+    } on DioError catch (e) {
+      print(e);
+    }
   });
 
   test('motos', () async {
-    final result = await service.listMotos();
-    assert(result != null);
+    try {
+      final result = await service.listMotos();
+      assert(result != null);
 
-    result.forEach((v) => print(v.placa));
+      result.forEach((v) => print(v.placa));
+    } on DioError catch (e) {
+      print(e);
+    }
   });
 
   test('create carro', () async {
     try {
-      final v = Veiculo.forInsert(tipo_veiculo: 0);
+      final v = ModelVeiculo.forInsert(tipo_veiculo: 0);
       final result = await service.createCarro(v);
       print(result.id);
     } on DioError catch (e) {
@@ -38,7 +46,7 @@ void main() {
 
   test('create moto', () async {
     try {
-      final v = Veiculo.forInsert(tipo_veiculo: 1);
+      final v = ModelVeiculo.forInsert(tipo_veiculo: 1);
       final result = await service.createMoto(v);
     } on DioError catch (e) {
       print(e.message);

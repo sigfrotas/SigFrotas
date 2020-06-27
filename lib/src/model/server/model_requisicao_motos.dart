@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:sigfrotas/src/model/server/veiculo.dart';
+import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
 
 class ModelRequisicaoMoto {
   int id;
@@ -21,7 +21,7 @@ class ModelRequisicaoMoto {
   int combustivel;
   DateTime created_at;
   DateTime updated_at;
-  Veiculo veiculo;
+  ModelVeiculo veiculo;
 
   ModelRequisicaoMoto({
     this.id,
@@ -63,7 +63,7 @@ class ModelRequisicaoMoto {
     pneusDianteiro = json['pneus_dianteiro'];
     pneusTrazeiro = json['pneus_trazeiro'];
     combustivel = json['combustivel'];
-    veiculo = Veiculo.fromJson(json['veiculo']);
+    veiculo = ModelVeiculo.fromJson(json['veiculo']);
     created_at = DateFormat("yyyy-MM-dd HH:mm:ss").parse(json['created_at']);
     updated_at = DateFormat("yyyy-MM-dd HH:mm:ss").parse(json['updated_at']);
   }

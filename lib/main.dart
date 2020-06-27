@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
         primaryColor: Colors.indigo,
         accentColor: Colors.red,
+        backgroundColor: ThemeData.light().backgroundColor,
         appBarTheme: AppBarTheme(
           color: Colors.white,
           elevation: 1,

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sigfrotas/consts.dart';
+import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
 import 'package:sigfrotas/src/model/server/default_result.dart';
-import 'package:sigfrotas/src/model/server/veiculo.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
 import 'package:sigfrotas/src/utils/awaitable_action.dart';
 import 'package:sigfrotas/src/utils/form_view.dart';
@@ -29,14 +29,14 @@ class ViewCreateVeiculo extends StatefulWidget {
 }
 
 class _ViewCreateVeiculoState extends State<ViewCreateVeiculo> with WillPopForm {
-  Veiculo veiculo;
+  ModelVeiculo veiculo;
   final _formKey = GlobalKey<FormState>();
   final GlobalKey<State> _globalKey = GlobalKey<State>();
 
   @override
   void initState() {
     super.initState();
-    veiculo = Veiculo.forInsert(tipo_veiculo: widget.tipo_veiculo);
+    veiculo = ModelVeiculo.forInsert(tipo_veiculo: widget.tipo_veiculo);
   }
 
   @override

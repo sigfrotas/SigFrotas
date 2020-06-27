@@ -1,12 +1,12 @@
 import 'package:intl/intl.dart';
-import 'package:sigfrotas/src/model/server/veiculo.dart';
+import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
 
 class ModelRequisicao {
   ModelRequisicao({
     this.id,
-    this.status,
-    this.km_inicial,
-    this.km_termino,
+    this.status = 0,
+    this.km_inicial = "123",
+    this.km_termino  = "456",
     this.alteracao_lataria = false,
     this.nivel_oleo = 0,
     this.qualidade_oleo = 0,
@@ -83,7 +83,7 @@ class ModelRequisicao {
       json['trazeiro_esquerdo_pisca'] as bool,
     ];
 
-    model.veiculo = Veiculo.fromJson(json['veiculo']);
+    model.veiculo = ModelVeiculo.fromJson(json['veiculo']);
     model.created_at = DateFormat("yyyy-MM-dd HH:mm:ss").parse(json['created_at']);
     model.updated_at = DateFormat("yyyy-MM-dd HH:mm:ss").parse(json['updated_at']);
 
@@ -107,12 +107,11 @@ class ModelRequisicao {
   bool alteracao_farois_dianteiros;
   bool alteracao_farois_trazeiros;
   List<bool> diantEsq, diantDir, trazEsq, trazDir, latariaEstado;
-  Veiculo veiculo;
+  ModelVeiculo veiculo;
   DateTime created_at, updated_at;
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'id': this.id,
       'status': this.status,
       'km_inicial': this.km_inicial,
       'km_termino': this.km_termino,
