@@ -9,6 +9,7 @@ import 'package:sigfrotas/src/model/server/model_requisicao.dart';
 import 'package:sigfrotas/src/model/server/model_requisicao_motos.dart';
 import 'package:sigfrotas/src/services/service_requisicao.dart';
 import 'package:sigfrotas/src/services/service_requisicao_motos.dart';
+import 'package:sigfrotas/src/view/admin/view_manutencao_detalhe/view_manutencao_detalhe.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao/view_manutencao_list_carro.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao/view_manutencao_list_moto.dart';
 
@@ -104,19 +105,27 @@ class _ViewManutencaoState extends State<ViewManutencao> with SingleTickerProvid
                 ]),
                 onError: (_, e) => Text("Error: $e"),
                 onSuccess: (_, data) {
-                  final reqMotos = data[1] as List<ModelRequisicaoMoto>;
                   final reqCarros = data[0] as List<ModelRequisicao>;
+                  final reqMotos = data[1] as List<ModelRequisicaoMoto>;
                   return TabBarView(
                     controller: controller,
                     children: <Widget>[
                       ViewManutencaoList(
                         icon: Icon(Icons.directions_car, color: Get.theme.accentColor),
                         requisicoes: reqCarros,
-                        onItemTap: print,
+                        onItemTap: (c) {
+                          Get.to<void>(
+                            ViewManutencaoCarroDetalhe(
+                              requisicao: c,
+                            ),
+                          );
+                        },
                       ),
                       ViewManutencaoListMoto(
                         requisicoes: reqMotos,
-                        onItemTap: print,
+                        onItemTap: (_) {
+                          Get.snackbar("Não implementado", "Item ainda não implementado");
+                        },
                       ),
                     ],
                   );

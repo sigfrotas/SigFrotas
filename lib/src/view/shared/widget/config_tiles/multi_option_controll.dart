@@ -27,7 +27,7 @@ class MultiOptionControll extends StatelessWidget {
           child: Text(
             label,
             textAlign: TextAlign.start,
-            style: Get.textTheme.subtitle1,
+            style: Get.textTheme.subtitle2,
           ),
         ),
         Container(

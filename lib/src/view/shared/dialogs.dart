@@ -134,4 +134,28 @@ class Dialogs {
       ),
     );
   }
+
+  static Future<String> showOptionsDialog({
+    @required BuildContext context,
+    @required List<String> options,
+    @required String title,
+  }) async {
+    return await showDialog(
+      context: context,
+      child: SimpleDialog(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
+        title: Text(title),
+        children: <Widget>[
+          for (int i = 0; i < options.length; i++)
+            SimpleDialogOption(
+              child: Text(options[i]),
+              onPressed: () => navigator.pop(options[i]),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+            )
+        ],
+      ),
+    );
+  }
 }

@@ -41,7 +41,17 @@ class Arrays {
     Colors.blueGrey,
   ];
 
-  static const List<String> unidades = ["7°BPM", "39° PEL", "40° PEL", "59°PPD"];
+  static const List<String> unidades = [
+    "7°BPM",
+    "39° PEL",
+    "40° PEL",
+    "59°PPD",
+  ];
+
+  static const List<String> opcoesStatusRequisicao = [
+    Strings.cancelarRequisicao,
+    Strings.finalizarRequisicao,
+  ];
 }
 
 class Strings {
@@ -93,8 +103,29 @@ class Strings {
   static const String emAberto = "Em Aberto";
   static const String finalizadas = "Finalizadas";
   static const String canceladas = "Canceladas";
+  static const String kmInicial = "Km Inicial";
+  static const String kmTermino = "Km Termino";
+
+  static const String diantDir = "Dianteiro Direito";
+  static const String diantEsq = "Dianteiro Esquerdo";
+  static const String trazDir = "Trazeiro Direito";
+  static const String trazEsq = "Trazeiro Esquero";
+
+  static const String finalizar = "Finalizar";
+  static const String cancelarRequisicao = "Cancelar Manutenção";
+  static const String finalizarRequisicao = "Finalizar Manutenção";
+
+  static const String alterarRequisicao = "Status da Manutenção";
 
   ///Strings usadas em validação de campos
   static const String campoBranco = "Campo está em branco";
   static const String placaInvalida = "Placa inválida";
+}
+
+class Maps {
+  static final Map<int, Widget> bomMedioRuim = {
+    0: Text(Arrays.nivelItems[0]),
+    1: Text(Arrays.nivelItems[1]),
+    2: Text(Arrays.nivelItems[2]),
+  };
 }

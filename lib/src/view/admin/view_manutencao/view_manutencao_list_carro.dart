@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/model/server/model_requisicao.dart';
@@ -27,7 +28,7 @@ class ViewManutencaoList extends StatelessWidget {
         child: ListView.separated(
           itemBuilder: (_, i) => ListTile(
             onTap: () => onItemTap(requisicoes[i]),
-            leading: icon,
+            leading: Icon(Icons.directions_car, color: Get.theme.accentColor),
             title: Text("Placa: " + requisicoes[i].veiculo.placa),
             subtitle: Text(
               Arrays.statusRequisicao[requisicoes[i].status],
