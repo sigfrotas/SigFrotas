@@ -58,60 +58,18 @@ class _ViewCreateVeiculoState extends State<ViewCreateVeiculo> with WillPopForm 
               FlatButton(
                 child: Text(Strings.salvar),
                 onPressed: () async {
-                  await AsyncDialog.execute(
-                    context,
-                    _globalKey,
-                    doAsync: () async {
-                      final formState = _formKey.currentState;
-                      if (formState.validate()) {
-                        formState.save();
-
-                        final service = Get.find<ServiceVeiculos>();
-
-                        final result = widget.tipo_veiculo == 0
-                            ? await service.createCarro(veiculo)
-                            : await service.createMoto(veiculo);
-
-                        if (result is DefaultResult) {
-                          veiculo.id = result.id;
-                        }
-                      }
-                    },
-                    onSucess: () {
-                      Get.back(result: veiculo);
-                    },
-                    onError: (e) {
-                      if (e is DioError) {
-                        Get.snackbar("Erro", "Falha ao enviar veículo: \\t Erro: ${e.message}");
-                      }
-                    },
-                  );
-
-                  /* Dialogs.showAwaitingDialog(context: context, key: _globalKey);
                   final formState = _formKey.currentState;
                   if (formState.validate()) {
                     formState.save();
 
-                    try {
-                      final dio = Get.find<Dio>();
-                      final service = ServiceVeiculos(dio);
+                    final service = Get.find<ServiceVeiculos>();
 
-                      final result = widget.tipo_veiculo == 0
-                          ? await service.createCarro(veiculo)
-                          : await service.createMoto(veiculo);
-
-                      if (result is DefaultResult) {
-                        veiculo.id = result.id;
-                      }
-                      Navigator.of(_globalKey.currentContext, rootNavigator: true).pop();
-                      Get.back(result: veiculo);
-                    } catch (e) {
-                      if (e is DioError) {
-                        Get.snackbar("Erro", "Falha ao enviar veículo: \\t Erro: ${e.message}");
-                      }
-                      Navigator.of(_globalKey.currentContext, rootNavigator: true).pop();
-                    }
-                  } */
+                    await AsyncDialog.run(context, _globalKey, () {
+                      return widget.tipo_veiculo == 0
+                          ? service.createCarro(veiculo)
+                          : service.createMoto(veiculo);
+                    });
+                  }
                 },
               )
             ],

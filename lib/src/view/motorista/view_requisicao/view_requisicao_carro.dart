@@ -1,12 +1,9 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sigfrotas/consts.dart';
-import 'package:sigfrotas/src/model/server/default_result.dart';
 import 'package:sigfrotas/src/model/server/model_requisicao.dart';
 import 'package:sigfrotas/src/services/service_requisicao.dart';
 import 'package:sigfrotas/src/utils/awaitable_action.dart';
@@ -17,7 +14,6 @@ import 'package:sigfrotas/src/view/shared/widget/config_tiles/multi_option_contr
 import 'package:sigfrotas/src/view/shared/widget/config_tiles/text_tile.dart';
 import 'package:sigfrotas/src/view/shared/widget/config_tiles/toggleable_title.dart';
 import 'package:sigfrotas/src/view/shared/widget/list_section_decorator.dart';
-import 'package:http/http.dart' as http;
 
 class ViewRequisicaoCarro extends StatefulWidget {
   const ViewRequisicaoCarro({
@@ -51,8 +47,15 @@ class _ViewRequisicaoCarroState extends State<ViewRequisicaoCarro> with WillPopF
 
   @override
   void initState() {
-    model = ModelRequisicao();
+    model = ModelRequisicao(veiculo_id: widget.veiculo_id);
     super.initState();
+  }
+
+  Widget _farolCaption(String label) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Text(label, style: Get.textTheme.caption.copyWith(color: Get.theme.accentColor)),
+    );
   }
 
   @override
@@ -75,22 +78,17 @@ class _ViewRequisicaoCarroState extends State<ViewRequisicaoCarro> with WillPopF
                 "Enviar",
                 style: Get.textTheme.button,
               ),
-              onPressed: () async {               
+              onPressed: () async {
                 final state = _formKey.currentState;
                 if (state.validate()) {
-                  state.save();
-                  //Por algum bug no Dio, tô usando http na mão.
-                  //Verificar quando tiver tempo
-                  final d = json.encode(model.toJson());
-                  await http.post(
-                    Consts.baseUrl + "/requisicoes/${widget.veiculo_id}",
-                    body: d,
-                    headers: {
-                      "Authorization": Get.find<Dio>().options.headers['Authorization'],
-                    },
-                  );
+                  final service = Get.find<ServiceRequisicao>();
 
-                  Get.back();
+                  try {
+                    await AsyncDialog.run(context, _gk, () async => service.postRequesicao(model));
+                    Get.back();
+                  } on DioError catch (e) {
+                    print(e);
+                  }
                 }
               },
             )
@@ -226,7 +224,9 @@ class _ViewRequisicaoCarroState extends State<ViewRequisicaoCarro> with WillPopF
                 if (model.alteracao_farois_dianteiros)
                   Column(
                     mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      _farolCaption("Esquerdo"),
                       ToggleableTile(
                         labels: Arrays.farolEstado,
                         isSelected: model.diantEsq,
@@ -234,6 +234,7 @@ class _ViewRequisicaoCarroState extends State<ViewRequisicaoCarro> with WillPopF
                           () => model.diantEsq[pos] = !model.diantEsq[pos],
                         ),
                       ),
+                      _farolCaption("Direito"),
                       ToggleableTile(
                         isSelected: model.diantDir,
                         labels: Arrays.farolEstado,
@@ -251,7 +252,9 @@ class _ViewRequisicaoCarroState extends State<ViewRequisicaoCarro> with WillPopF
                 if (model.alteracao_farois_trazeiros)
                   Column(
                     mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      _farolCaption("Esquerdo"),
                       ToggleableTile(
                         labels: Arrays.farolEstado,
                         isSelected: model.trazEsq,
@@ -259,6 +262,7 @@ class _ViewRequisicaoCarroState extends State<ViewRequisicaoCarro> with WillPopF
                           () => model.trazEsq[pos] = !model.trazEsq[pos],
                         ),
                       ),
+                      _farolCaption("Direito"),
                       ToggleableTile(
                         isSelected: model.trazDir,
                         labels: Arrays.farolEstado,

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
 
@@ -6,8 +7,7 @@ class ModelRequisicaoMoto {
   int userId;
   int status;
   int veiculo_id;
-  String prefixo;
-  String km;
+  int km;
   int limpeza;
   int circunstancia;
   int ladoDireito;
@@ -24,23 +24,22 @@ class ModelRequisicaoMoto {
   ModelVeiculo veiculo;
 
   ModelRequisicaoMoto({
+    @required this.veiculo_id,
     this.id,
     this.userId,
-    this.status,
-    this.veiculo_id,
-    this.prefixo,
-    this.km,
-    this.limpeza,
-    this.circunstancia,
-    this.ladoDireito,
-    this.ladoEsquerdo,
-    this.dianteira,
-    this.trazeira,
-    this.superior,
-    this.interna,
-    this.pneusDianteiro,
-    this.pneusTrazeiro,
-    this.combustivel,
+    this.status = 0,
+    this.km = 30,
+    this.limpeza = 0,
+    this.circunstancia = 0,
+    this.ladoDireito = 0,
+    this.ladoEsquerdo = 0,
+    this.dianteira = 0,
+    this.trazeira = 0,
+    this.superior = 0,
+    this.interna = 0,
+    this.pneusDianteiro = 1,
+    this.pneusTrazeiro = 1,
+    this.combustivel = 10,
     this.created_at,
     this.updated_at,
   });
@@ -50,7 +49,6 @@ class ModelRequisicaoMoto {
     status = json['status'];
     userId = json['user_id'];
     veiculo_id = json['veiculo_id'];
-    prefixo = json['prefixo'];
     km = json['km'];
     limpeza = json['limpeza'];
     circunstancia = json['circunstancia'];
@@ -70,11 +68,8 @@ class ModelRequisicaoMoto {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = this.id;
-    data['status'] = this.status;
-    data['user_id'] = this.userId;
     data['veiculo_id'] = this.veiculo_id;
-    data['prefixo'] = this.prefixo;
+    data['status'] = this.status;
     data['km'] = this.km;
     data['limpeza'] = this.limpeza;
     data['circunstancia'] = this.circunstancia;
@@ -87,8 +82,6 @@ class ModelRequisicaoMoto {
     data['pneus_dianteiro'] = this.pneusDianteiro;
     data['pneus_trazeiro'] = this.pneusTrazeiro;
     data['combustivel'] = this.combustivel;
-    data['created_at'] = this.created_at.toIso8601String();
-    data['updated_at'] = this.updated_at.toIso8601String();
     return data;
   }
 }

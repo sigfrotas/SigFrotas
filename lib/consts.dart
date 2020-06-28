@@ -120,6 +120,7 @@ class Strings {
   static const String canceladas = "Canceladas";
   static const String kmInicial = "Km Inicial";
   static const String kmTermino = "Km Termino";
+  static const String kilometragem = "Kilometragem";
 
   static const String diantDir = "Dianteiro Direito";
   static const String diantEsq = "Dianteiro Esquerdo";

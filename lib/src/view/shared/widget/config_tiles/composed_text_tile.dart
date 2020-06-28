@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ComposedTextTile extends StatelessWidget {
   const ComposedTextTile({
@@ -8,6 +9,8 @@ class ComposedTextTile extends StatelessWidget {
     @required this.validator,
     @required this.icon,
     @required this.onChanged,
+    this.inputFormatters,
+    this.inputType = TextInputType.text,
     this.maxLength = 10,
     Key key,
   }) : super(key: key);
@@ -17,6 +20,8 @@ class ComposedTextTile extends StatelessWidget {
   final String label, hint;
   final String initialValue;
   final Function(String validate) validator, onChanged;
+  final List<TextInputFormatter> inputFormatters;
+  final TextInputType inputType;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +37,8 @@ class ComposedTextTile extends StatelessWidget {
           labelText: label,
           hintText: hint,
         ),
+        keyboardType: inputType,
+        inputFormatters: inputFormatters,
       ),
     );
   }

@@ -1,12 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
 
 class ModelRequisicao {
   ModelRequisicao({
+    @required this.veiculo_id,
     this.id,
     this.status = 0,
     this.km_inicial = "123",
-    this.km_termino  = "456",
+    this.km_termino = "456",
     this.alteracao_lataria = false,
     this.nivel_oleo = 0,
     this.qualidade_oleo = 0,
@@ -30,6 +32,7 @@ class ModelRequisicao {
   factory ModelRequisicao.fromJson(Map<String, dynamic> json) {
     final model = ModelRequisicao(
       id: json['id'] as int,
+      veiculo_id: json['veiculo_id'] as int,
       status: json['status'] as int,
       km_inicial: json['km_inicial'] as String,
       km_termino: json['km_termino'] as String,
@@ -91,6 +94,7 @@ class ModelRequisicao {
   }
 
   int id;
+  int veiculo_id;
   int status;
   String km_inicial;
   String km_termino;
@@ -112,6 +116,7 @@ class ModelRequisicao {
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
+      'veiculo_id': this.veiculo_id,
       'status': this.status,
       'km_inicial': this.km_inicial,
       'km_termino': this.km_termino,

@@ -11,8 +11,8 @@ part 'service_requisicao.g.dart';
 abstract class ServiceRequisicao {
   factory ServiceRequisicao(Dio dio, {String baseUrl}) = _ServiceRequisicao;
 
-  @POST('/{id}')
-  Future<DefaultResult> postRequesicao(@Path() int veiculo_id, @Body() ModelRequisicao requisicao);
+  @POST('')
+  Future<DefaultResult> postRequesicao(@Body() ModelRequisicao requisicao);
 
   @GET('')
   Future<List<ModelRequisicao>> listRequisicoes();
