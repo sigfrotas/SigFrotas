@@ -114,6 +114,7 @@ class _ViewManutencaoState extends State<ViewManutencao> with SingleTickerProvid
                           Get.to<void>(
                             ViewManutencaoCarroDetalhe(
                               requisicao: c,
+                              editable: true,
                             ),
                           );
                         },

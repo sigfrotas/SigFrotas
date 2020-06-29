@@ -22,11 +22,13 @@ class BranchView extends StatefulWidget {
 class _BranchViewState extends State<BranchView> with SingleTickerProviderStateMixin {
   int position;
   bool isAdmin;
+  String token;
 
   @override
   void initState() {
     isAdmin = widget.data.isAdmin;
-    if (widget.data.token.isEmpty) {
+    token = widget.data.token;
+    if (token.isEmpty) {
       position = 0;
     } else {
       position = isAdmin ? 2 : 3;
@@ -44,11 +46,11 @@ class _BranchViewState extends State<BranchView> with SingleTickerProviderStateM
         return ViewSignin(setPosition: setPosition);
         break;
       case 2:
-        Injector.inject(widget.data.token);
+        Injector.inject(token);
         return ViewAdmin();
         break;
       case 3:
-        Injector.inject(widget.data.token);
+        Injector.inject(token);
         return ViewMotorista();
       default:
         return Container(
@@ -61,10 +63,11 @@ class _BranchViewState extends State<BranchView> with SingleTickerProviderStateM
     return await Vault.getToken();
   }
 
-  void setPosition(int position, bool isAdmin) {
+  void setPosition(int position, bool isAdmin, String token) {
     setState(() {
       this.position = position;
       this.isAdmin = isAdmin;
+      this.token = token;
     });
   }
 

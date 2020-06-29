@@ -26,6 +26,7 @@ class _CondutorListVeiculosState extends State<CondutorListVeiculos> {
   final _memo = AsyncMemoizer<List<ModelVeiculo>>();
 
   Future<List<ModelVeiculo>> listCarros() async {
+    
     final service = Get.find<ServiceVeiculos>();
     return _memo.runOnce(() async {
       return await service.listCarros();

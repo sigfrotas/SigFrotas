@@ -5,11 +5,10 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/model/server/model_login.dart';
-import 'package:sigfrotas/src/model/vault_data.dart';
 import 'package:sigfrotas/src/services/service_login.dart';
+import 'package:sigfrotas/src/utils/awaitable_action.dart';
 import 'package:sigfrotas/src/utils/injector.dart';
 import 'package:sigfrotas/src/utils/vault.dart';
-import 'package:sigfrotas/src/view/shared/dialogs.dart';
 import 'package:sigfrotas/src/view/shared/form_validation.dart';
 import 'package:sigfrotas/src/view/shared/link_button.dart';
 import 'package:sigfrotas/src/view/shared/rounded_button.dart';
@@ -21,7 +20,7 @@ class ViewSignin extends StatefulWidget {
     Key key,
   }) : super(key: key);
 
-  final Function(int position, bool isAdmin) setPosition;
+  final Function(int position, bool isAdmin, String token) setPosition;
 
   @override
   _ViewSigninState createState() => _ViewSigninState();
@@ -45,43 +44,42 @@ class _ViewSigninState extends State<ViewSignin> {
 
   Future _doSignin(BuildContext context) async {
     if (_formKey.currentState.validate()) {
-      // ignore: unawaited_futures
-      Dialogs.showAwaitingDialog(context: context, key: _globalKey);
-      try {
-        final dio = Dio();
-        final client = ServiceLogin(dio);
-        final result = await client.register(
-          {
-            "nome": txtUsername.text.trim(),
-            "rgpm": txtRg.text.trim(),
-            "pass": txtPass.text.trim(),
-            "isAdmin": false,
-          },
-        );
+      await AsyncDialog.run(
+        context,
+        _globalKey,
+        () async {
+          try {
+            final dio = Dio();
+            final client = ServiceLogin(dio);
+            final result = await client.register(
+              {
+                "nome": txtUsername.text.trim(),
+                "rgpm": txtRg.text.trim(),
+                "pass": txtPass.text.trim(),
+                "isAdmin": false,
+              },
+            );
 
-        if (result is ModelLogin) {
-          final vault = Vault();
-          await vault.setAuthData(
-            nome: result.nome,
-            rgpm: result.rgpm,
-            token: result.token,
-            isAdmin: result.isAdmin,
-          );
+            if (result is ModelLogin) {
+              final vault = Vault();
+              await vault.setAuthData(
+                nome: result.nome,
+                rgpm: result.rgpm,
+                token: result.token,
+                isAdmin: result.isAdmin,
+              );
 
-          //Injeta instancia do Dio já com o token de acesso
-          Get.put<Dio>(Dio()..options.headers['Authorization'] = "Bearer ${result.token}");
-          Injector.inject(result.token);
-          Navigator.of(_globalKey.currentContext, rootNavigator: true).pop();
-          final VaultData data = await Vault.getDefaultInfo();
-          widget.setPosition(data.isAdmin ? 2 : 3, data.isAdmin);
-        }
-      } catch (e) {
-        if (e is DioError) {
-          Get.snackbar("Falha ao conectar", e.response.data[0]['message']);
-        }
-      }
-
-      Navigator.of(_globalKey.currentContext, rootNavigator: true).pop();
+              //Injeta instancia do Dio já com o token de acesso
+              Injector.inject(result.token);
+              widget.setPosition(result.isAdmin ? 2 : 3, result.isAdmin, result.token);
+            }
+          } catch (e) {
+            if (e is DioError) {
+              Get.snackbar("Falha ao conectar", e.response.data[0]['message']);
+            }
+          }
+        },
+      );
     }
   }
 
@@ -170,7 +168,7 @@ class _ViewSigninState extends State<ViewSignin> {
             ),
             LinkButton(
               label: "Voltar",
-              onPressed: () => widget.setPosition(0, false),
+              onPressed: () => widget.setPosition(0, false, ""),
             ),
           ],
         ),
