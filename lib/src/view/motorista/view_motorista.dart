@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sigfrotas/consts.dart';
-import 'package:sigfrotas/src/model/server/model_requisicao.dart';
+import 'package:sigfrotas/src/model/server/default_result.dart';
 import 'package:sigfrotas/src/view/motorista/conduto_list_veiculos/condutor_list_veiculos.dart';
 import 'package:sigfrotas/src/view/motorista/view_ultimo_proc.dart';
 import 'package:sigfrotas/src/view/shared/view_base.dart';
@@ -16,23 +16,21 @@ class ViewMotorista extends StatelessWidget {
         BottomMenuItem(
           icon: Icons.directions_car,
           label: Strings.automovel,
-          onTap: () {
-            Get.to<CondutorListVeiculos>(
+          onTap: () async {
+            final r = await Get.to<DefaultResult>(
               const CondutorListVeiculos(tipoVeiculo: 0),
             );
+
+            print(r);
           },
         ),
         BottomMenuItem(
           icon: Icons.motorcycle,
           label: Strings.motocicleta,
           onTap: () async {
-            final result = await Get.to<ModelRequisicao>(
+            await Get.to<DefaultResult>(
               const CondutorListVeiculos(tipoVeiculo: 1),
             );
-
-            if (result != null) {
-              //TODO - Adicionar ultima_requisicao ao widget
-            }
           },
         ),
         BottomMenuItem(

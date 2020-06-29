@@ -19,7 +19,7 @@ class ModelCounter {
     };
   }
 
-  static ModelCounter fromJson(Map<String, dynamic> map) {
+  factory ModelCounter.fromJson(Map<String, dynamic> map) {
     if (map == null) {
       return null;
     }

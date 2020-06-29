@@ -17,9 +17,8 @@ class ViewAdmin extends StatelessWidget {
         BottomMenuItem(
           icon: Icons.directions_car,
           label: Strings.veiculos,
-          onTap: () async {
-            ///TODO - Verificar se deve tratar algum retorno daqui
-            final r = await Get.to<void>(ViewAdminVeiculos());
+          onTap: () async {            
+            await Get.to<void>(ViewAdminVeiculos());
           },
         ),
         BottomMenuItem(

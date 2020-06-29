@@ -12,9 +12,14 @@ import 'package:sigfrotas/src/view/shared/dialogs.dart';
 import 'package:sigfrotas/src/view/shared/widget/list_section_decorator.dart';
 
 class ViewManutencaoMotosDetalhe extends StatefulWidget {
-  const ViewManutencaoMotosDetalhe({Key key, this.requisicao}) : super(key: key);
+  const ViewManutencaoMotosDetalhe({
+    @required this.requisicao,
+    @required this.editable,
+    Key key,
+  }) : super(key: key);
 
   final ModelRequisicaoMoto requisicao;
+  final bool editable;
 
   @override
   _ViewManutencaoMotosDetalheState createState() => _ViewManutencaoMotosDetalheState();
@@ -29,34 +34,37 @@ class _ViewManutencaoMotosDetalheState extends State<ViewManutencaoMotosDetalhe>
       appBar: AppBar(
         title: Text(widget.requisicao.veiculo.placa),
         actions: <Widget>[
-          FlatButton(
-            child: const Text("Finalizar"),
-            onPressed: () async {
-              final int r = await Dialogs.showOptionsDialog(
-                title: Strings.alterarRequisicao,
-                context: context,
-                options: Arrays.opcoesStatusRequisicao,
-              );
+          if (widget.editable)
+            FlatButton(
+              child: const Text("Finalizar"),
+              onPressed: () async {
+                final int r = await Dialogs.showOptionsDialog(
+                  title: Strings.alterarRequisicao,
+                  context: context,
+                  options: Arrays.opcoesStatusRequisicao,
+                );
 
-              if (r != null) {
-                if (r == 0) {
-                  await AsyncDialog.run(
-                    context,
-                    _gk,
-                    () => Get.find<ServiceRequisicaoMotos>().cancelRequisicao(widget.requisicao.id),
-                  );
-                } else if (r == 1) {
-                  await AsyncDialog.run(
-                    context,
-                    _gk,
-                    () => Get.find<ServiceRequisicaoMotos>().finishRequisicao(widget.requisicao.id),
-                  );
+                if (r != null) {
+                  if (r == 0) {
+                    await AsyncDialog.run(
+                      context,
+                      _gk,
+                      () =>
+                          Get.find<ServiceRequisicaoMotos>().cancelRequisicao(widget.requisicao.id),
+                    );
+                  } else if (r == 1) {
+                    await AsyncDialog.run(
+                      context,
+                      _gk,
+                      () =>
+                          Get.find<ServiceRequisicaoMotos>().finishRequisicao(widget.requisicao.id),
+                    );
+                  }
+
+                  Get.back();
                 }
-
-                Get.back();
-              }
-            },
-          )
+              },
+            )
         ],
       ),
       body: SingleChildScrollView(
@@ -74,35 +82,43 @@ class _ViewManutencaoMotosDetalheState extends State<ViewManutencaoMotosDetalhe>
             ),
             ViewManutencaoMotoCircunstancia(
               circunstancia: widget.requisicao.circunstancia,
+              onValueChanged: (_) {},
             ),
             ListSectionDecorator(label: "Carenagem:"),
             ViewManutencaoMotoLimpeza(
               limpeza: widget.requisicao.limpeza,
+              onValueChanged: (_) {},
             ),
             ViewManutencaoMotoLataria(
               label: "Lado Direito",
               lataria: widget.requisicao.ladoDireito,
+              onValueChanged: (_) {},
             ),
             ViewManutencaoMotoLataria(
               label: "Lado Esquerdo",
               lataria: widget.requisicao.ladoEsquerdo,
+              onValueChanged: (_) {},
             ),
             ViewManutencaoMotoLataria(
               label: "Parte Superior",
               lataria: widget.requisicao.superior,
+              onValueChanged: (_) {},
             ),
             ViewManutencaoMotoLataria(
               label: "Parte Interna",
               lataria: widget.requisicao.interna,
+              onValueChanged: (_) {},
             ),
             ListSectionDecorator(label: "Pneus"),
             ViewManutencaoMotoPneu(
               label: "Pneu Dianteiro",
               pneu: widget.requisicao.pneusDianteiro,
+              onValueChanged: (_) {},
             ),
             ViewManutencaoMotoPneu(
               label: "Pneu Trazeiro",
               pneu: widget.requisicao.pneusTrazeiro,
+              onValueChanged: (_) {},
             )
           ],
         ),

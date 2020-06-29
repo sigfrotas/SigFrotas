@@ -121,7 +121,7 @@ class _ViewManutencaoState extends State<ViewManutencao> with SingleTickerProvid
                       ViewManutencaoListMoto(
                         requisicoes: reqMotos,
                         onItemTap: (m) {
-                          Get.to<void>(ViewManutencaoMotosDetalhe(requisicao: m));
+                          Get.to<void>(ViewManutencaoMotosDetalhe(requisicao: m, editable: true));
                         },
                       ),
                     ],

@@ -57,7 +57,7 @@ class _CondutorListVeiculosState extends State<CondutorListVeiculos> {
                   ),
                   veiculos: list,
                   onTap: (ModelVeiculo v) async {
-                    final r = await Get.to<DefaultResult>(
+                    await Get.to<DefaultResult>(
                       widget.tipoVeiculo == 0
                           ? ViewRequisicaoCarro(veiculo_id: v.id)
                           : ViewRequisicaoMotos(veiculo_id: v.id),

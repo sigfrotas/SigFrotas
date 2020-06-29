@@ -18,7 +18,7 @@ abstract class ServiceRequisicaoMotos {
   Future<List<ModelRequisicaoMoto>> listRequisicoes();
 
   @GET('/{id}')
-  Future<ModelRequisicaoMoto> findById();
+  Future<ModelRequisicaoMoto> findById(@Path() int id);
 
   @GET('/filter/{status}')
   Future<List<ModelRequisicaoMoto>> listRequisicoesByStatus(@Path() int status);

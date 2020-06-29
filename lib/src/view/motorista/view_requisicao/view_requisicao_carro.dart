@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sigfrotas/consts.dart';
+import 'package:sigfrotas/src/model/server/default_result.dart';
 import 'package:sigfrotas/src/model/server/model_requisicao.dart';
 import 'package:sigfrotas/src/services/service_requisicao.dart';
 import 'package:sigfrotas/src/utils/awaitable_action.dart';
@@ -84,8 +85,11 @@ class _ViewRequisicaoCarroState extends State<ViewRequisicaoCarro> with WillPopF
                   final service = Get.find<ServiceRequisicao>();
 
                   try {
-                    await AsyncDialog.run(context, _gk, () async => service.postRequesicao(model));
-                    Get.back();
+//                    await AsyncDialog.run(context, _gk, () async => service.postRequesicao(model));
+                    final r = await AsyncDialog.provide<DefaultResult>(context, _gk, () async {
+                      return service.postRequesicao(model);
+                    });
+                    Get.back(result: r);
                   } on DioError catch (e) {
                     print(e);
                   }

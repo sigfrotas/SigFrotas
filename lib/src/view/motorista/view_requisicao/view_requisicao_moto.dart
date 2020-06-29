@@ -1,12 +1,8 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 import 'package:sigfrotas/consts.dart';
-import 'package:sigfrotas/src/model/server/default_result.dart';
 import 'package:sigfrotas/src/model/server/model_requisicao_motos.dart';
 import 'package:sigfrotas/src/services/service_requisicao_motos.dart';
 import 'package:sigfrotas/src/utils/awaitable_action.dart';
@@ -15,7 +11,6 @@ import 'package:sigfrotas/src/view/admin/view_manutencao_motos_detalhe/view_manu
 import 'package:sigfrotas/src/view/admin/view_manutencao_motos_detalhe/view_manutencao_moto_limpeza.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao_motos_detalhe/view_manutencao_moto_pneu.dart';
 import 'package:sigfrotas/src/view/motorista/view_requisicao/requisicao_validator.dart';
-import 'package:sigfrotas/src/view/shared/dialogs.dart';
 import 'package:sigfrotas/src/view/shared/widget/config_tiles/composed_text_tile.dart';
 import 'package:sigfrotas/src/view/shared/widget/list_section_decorator.dart';
 

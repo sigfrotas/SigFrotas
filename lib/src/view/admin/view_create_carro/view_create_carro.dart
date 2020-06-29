@@ -1,10 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
-import 'package:sigfrotas/src/model/server/default_result.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
 import 'package:sigfrotas/src/utils/awaitable_action.dart';
 import 'package:sigfrotas/src/utils/form_view.dart';

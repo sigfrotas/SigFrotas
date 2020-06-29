@@ -47,7 +47,7 @@ void main() {
   test('create moto', () async {
     try {
       final v = ModelVeiculo.forInsert(tipo_veiculo: 1);
-      final result = await service.createMoto(v);
+      await service.createMoto(v);
     } on DioError catch (e) {
       print(e.message);
     }

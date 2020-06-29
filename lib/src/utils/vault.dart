@@ -9,6 +9,7 @@ class Vault {
   static const String NOME = "sigfrotas_nome";
   static const String RGPM = "sigfrotas_RGPM";
   static const String IS_ADMIN = "sigfrotas_isadmin";
+  static const String LAST_INSERTED = "sigfrotas_last_insert";
 
   static FlutterSecureStorage _getStorage() {
     return const FlutterSecureStorage();

@@ -39,9 +39,7 @@ class _ViewAdminVeiculosState extends State<ViewAdminVeiculos> with SingleTicker
   }
 
   void callViewCreateVeiculo(int tipo) async {
-    final r = await Get.to<ModelVeiculo>(ViewCreateVeiculo(tipo_veiculo: tipo));
-
-    ///TODO - Verificar se deve tratar o retorno
+    await Get.to<ModelVeiculo>(ViewCreateVeiculo(tipo_veiculo: tipo));
   }
 
   @override

@@ -12,9 +12,14 @@ import 'package:sigfrotas/src/view/admin/view_manutencao_detalhe/view_motor_deta
 import 'package:sigfrotas/src/view/shared/dialogs.dart';
 
 class ViewManutencaoCarroDetalhe extends StatefulWidget {
-  const ViewManutencaoCarroDetalhe({Key key, this.requisicao}) : super(key: key);
+  const ViewManutencaoCarroDetalhe({
+    @required this.requisicao,
+    @required this.editable,
+    Key key,
+  }) : super(key: key);
 
   final ModelRequisicao requisicao;
+  final bool editable;
 
   static final Map<int, Widget> faroisEstado = {
     0: Text(Arrays.farolEstado[0]),
@@ -36,7 +41,7 @@ class _ViewManutencaoCarroDetalheState extends State<ViewManutencaoCarroDetalhe>
       appBar: AppBar(
         title: Text("Placa: ${widget.requisicao.veiculo.placa}"),
         actions: <Widget>[
-          if (widget.requisicao.status == 0)
+          if (widget.requisicao.status == 0 && widget.editable)
             FlatButton(
               child: const Text(Strings.finalizar),
               onPressed: () async {

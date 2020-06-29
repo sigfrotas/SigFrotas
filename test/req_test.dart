@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sigfrotas/src/model/server/default_result.dart';
@@ -34,8 +32,6 @@ void main() {
         alteracao_farois_dianteiros: false,
         alteracao_farois_trazeiros: false,
       );
-
-      // print(json.encode(requisicao.toJson()));
 
       try {
         final r = await service.postRequesicao(requisicao);
