@@ -14,6 +14,12 @@ import 'package:sigfrotas/src/view/admin/view_manutencao_motos_detalhe/view_manu
 import 'package:sigfrotas/src/view/admin/view_manutencao_detalhe/view_manutencao_detalhe.dart';
 
 class ViewManutencao extends StatefulWidget {
+  const ViewManutencao({
+    @required this.isMotomec,
+    Key key,
+  }) : super(key: key);
+  final bool isMotomec;
+
   @override
   _ViewManutencaoState createState() => _ViewManutencaoState();
 }
@@ -53,7 +59,9 @@ class _ViewManutencaoState extends State<ViewManutencao> with SingleTickerProvid
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          title: Text(Strings.veiculosManutencao),
+          title: Text(
+            widget.isMotomec ? Strings.veiculosManutencao : Strings.historicoManutencao,
+          ),
           bottom: TabBar(
             controller: controller,
             tabs: <Widget>[
@@ -114,7 +122,7 @@ class _ViewManutencaoState extends State<ViewManutencao> with SingleTickerProvid
                           Get.to<void>(
                             ViewManutencaoCarroDetalhe(
                               requisicao: c,
-                              editable: true,
+                              editable: widget.isMotomec,
                             ),
                           );
                         },
@@ -122,7 +130,8 @@ class _ViewManutencaoState extends State<ViewManutencao> with SingleTickerProvid
                       ViewManutencaoListMoto(
                         requisicoes: reqMotos,
                         onItemTap: (m) {
-                          Get.to<void>(ViewManutencaoMotosDetalhe(requisicao: m, editable: true));
+                          Get.to<void>(ViewManutencaoMotosDetalhe(
+                              requisicao: m, editable: widget.isMotomec));
                         },
                       ),
                     ],

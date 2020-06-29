@@ -64,8 +64,8 @@ class Arrays {
   ];
 
   static const List<String> opcoesStatusRequisicao = [
-    Strings.cancelarRequisicao,
     Strings.finalizarRequisicao,
+    Strings.cancelarRequisicao,
   ];
 }
 
@@ -115,6 +115,7 @@ class Strings {
   static const String salvar = "Salvar";
   static const String cancelar = "Cancelar";
   static const String veiculosManutencao = "Veículos em manutenção";
+  static const String historicoManutencao = "Relação de manutenções";
   static const String emAberto = "Em Aberto";
   static const String finalizadas = "Finalizadas";
   static const String canceladas = "Canceladas";

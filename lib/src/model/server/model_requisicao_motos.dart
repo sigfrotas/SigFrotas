@@ -49,7 +49,7 @@ class ModelRequisicaoMoto {
     status = json['status'];
     userId = json['user_id'];
     veiculo_id = json['veiculo_id'];
-    km = json['km'];
+    km = int.parse(json['km']);
     limpeza = json['limpeza'];
     circunstancia = json['circunstancia'];
     ladoDireito = json['lado_direito'];
