@@ -1,3 +1,16 @@
+///Coding: UTF-8
+
+///Arquivo: model_requisicao.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Model para solicitar dados de requisição de veículos e métodos para ler e escrever dados em json
+
+///-----------------------------------------------------------------------------------
+
+///Importando foundation do SDK padrão, intl do pacote intl e arquivo de constantes
+
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:sigfrotas/consts.dart';

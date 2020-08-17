@@ -1,3 +1,17 @@
+///Coding: UTF-8
+
+///Arquivo: model_counter.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Model para receber total de automoveis, motocicletas e motoristas cadastrados
+///contendo métodos para gerar e ler dados em json 
+
+///-----------------------------------------------------------------------------------
+
+///Importando dart:convert do SDK padrão
+
 import 'dart:convert';
 
 class ModelCounter {

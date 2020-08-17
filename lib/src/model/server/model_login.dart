@@ -1,3 +1,16 @@
+///Coding: UTF-8
+
+///Arquivo: model_login.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Model para receber dados de login e métodos para ler e escrever json
+
+///-----------------------------------------------------------------------------------
+
+///Importando json_annotation do pacote json_serializable
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'model_login.g.dart';
