@@ -1,3 +1,16 @@
+///Coding: UTF-8
+
+///Arquivo: service_veiculos.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Service que faz requisições http para criar, listar, cancelar, buscar e remover veículos
+
+///-----------------------------------------------------------------------------------
+
+///Importando Dio do pacote Dio, Retrofit do pacote retrofit, arquivo de constantes e os models ModelVeiculo, DefaultResult, ModelCounter
+
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:sigfrotas/consts.dart';

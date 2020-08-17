@@ -1,3 +1,15 @@
+///Coding: UTF-8
+
+///Arquivo: service_login.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Service que faz chamadas http para cadastro e validação de usuários
+
+///-----------------------------------------------------------------------------------
+
+///Importando Dio do pacote Dio, Retrofit do pacote retrofit, arquivo de constantes e model ModelLogin
 
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';

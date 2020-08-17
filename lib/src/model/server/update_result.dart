@@ -1,3 +1,16 @@
+///Coding: UTF-8
+
+///Arquivo: update_result.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Model para recebimento de dados ao atualizar dados e método para ler json
+
+///-----------------------------------------------------------------------------------
+
+///Importando foundation do SDK padrão
+
 import 'package:flutter/foundation.dart';
 
 @immutable

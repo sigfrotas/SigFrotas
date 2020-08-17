@@ -1,5 +1,18 @@
-import 'dart:convert';
+///Coding: UTF-8
 
+///Arquivo: model_last_insert.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Model para recuperar dados do último veículo adicionado para manutenção, 
+///           contendo métodos para ler e escrever json
+
+///-----------------------------------------------------------------------------------
+
+///Importando convert do SDK padrão e intl do pacote intl
+
+import 'dart:convert';
 import 'package:intl/intl.dart';
 
 class ModelLastInsert {
