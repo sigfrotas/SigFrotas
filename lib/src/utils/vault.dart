@@ -1,10 +1,21 @@
+///Coding: UTF-8
+
+///Arquivo: vault.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Vault é uma classe com métodos estáticos para gravar dados de acesso criptografados no SecureStorage
+
+///-----------------------------------------------------------------------------------
+
+///Importando foundation do SDK padrão, FlutterSecureStorage do pacote flutter_secure_storage
+///model VaultData da pasta /src/model/vault_data
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sigfrotas/src/model/vault_data.dart';
 
 class Vault {
-  Vault();
-
   static const String TOKEN = "sigfrotas_token";
   static const String NOME = "sigfrotas_nome";
   static const String RGPM = "sigfrotas_RGPM";
@@ -24,28 +35,6 @@ class Vault {
     final allValues = await _getAllValues();
     return allValues.containsKey(TOKEN);
   }
-
-  //implementar rotina de refresh_token
-/*
-  Future<bool> hasSetRefreshToken() async {
-    final v = await _getAllValues();
-    return v.containsKey(REFRESH_TOKEN);
-  }
-
-  Future<void> setRefreshToken(String refreshToken) {
-    final store = _getStorage();
-    return store.write(
-      key: REFRESH_TOKEN,
-      value: refreshToken,
-    );
-  }
-
-  Future<String> getRefreshToken() async {
-    final store = _getStorage();
-    return await store.read(key: REFRESH_TOKEN);
-  }
-
-  */
 
   Future<void> setToken(String token) async {
     final store = _getStorage();
