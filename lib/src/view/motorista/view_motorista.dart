@@ -9,7 +9,8 @@
 
 ///-----------------------------------------------------------------------------------
 
-///Importando material do SDK padrão, Get do pacote GetX
+///Importando material do SDK padrão, Get do pacote GetX, arquivo de constantes
+///model DefaultResult em default_result.dart
 ///Widgets da pasta /src/view
 
 import 'package:flutter/material.dart';
@@ -22,11 +23,6 @@ import 'package:sigfrotas/src/view/motorista/view_ultimo_proc.dart';
 import 'package:sigfrotas/src/view/shared/view_base.dart';
 import 'package:sigfrotas/src/view/shared/widget/bottom_menu_item.dart';
 
-///renderiza tela com widget exibindo última requição
-///[BottomNavigationBar] com rotas para as telas:
-///[CondutorListVeiculos] para listar automóveis cadastrados
-///[CondutorListVeiculos] para listar motocicletas cadastradas
-///[ViewManutencao] para listar histórico de manutenções requisitadas pelo usuário
 class ViewMotorista extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

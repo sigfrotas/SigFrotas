@@ -13,7 +13,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
-import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
+import 'package:sigfrotas/src/model/server/model_veiculo.dart';
 
 class ModelRequisicao {
   ModelRequisicao({

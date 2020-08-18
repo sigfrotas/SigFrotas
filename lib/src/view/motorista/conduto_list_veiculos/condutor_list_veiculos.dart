@@ -1,9 +1,26 @@
-import 'package:async/async.dart';
+///Coding: UTF-8
+
+///Arquivo: condutor_list_veiculos.dart
+///Criado em: "18/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Tela que exibe lista de veículos disponíveis 
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, Get do pacote GetX,
+///AsyncMemoizer do pacote async
+///arquivo de constantes, models ModelVeiculo e DefaultResult de /src/model/server
+///service ServiceVeiculos de src/services/
+///Widgets da pasta /src/view
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:async/async.dart';
 import 'package:lib_observer/lib_observer.dart';
 import 'package:sigfrotas/consts.dart';
-import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
+import 'package:sigfrotas/src/model/server/model_veiculo.dart';
 import 'package:sigfrotas/src/model/server/default_result.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
 import 'package:sigfrotas/src/view/motorista/view_requisicao/view_requisicao_carro.dart';

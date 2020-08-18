@@ -1,5 +1,19 @@
+///Coding: UTF-8
+
+///Arquivo: view_list_veiculos.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Widget contendo lista de veículos cadastrados
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, Get do pacote GetX
+///Widgets da pasta /src/view
+
 import 'package:flutter/material.dart';
-import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
+import 'package:sigfrotas/src/model/server/model_veiculo.dart';
 import 'package:sigfrotas/src/view/shared/widget/list_divider.dart';
 
 class ViewListVeiculos extends StatelessWidget {

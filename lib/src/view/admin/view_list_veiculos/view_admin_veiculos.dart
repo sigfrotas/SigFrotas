@@ -20,7 +20,7 @@ import 'package:async/async.dart';
 import 'package:get/get.dart';
 import 'package:lib_observer/lib_observer.dart';
 import 'package:sigfrotas/consts.dart';
-import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
+import 'package:sigfrotas/src/model/server/model_veiculo.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
 import 'package:sigfrotas/src/view/admin/view_create_carro/view_create_carro.dart';
 import 'package:sigfrotas/src/view/shared/view_list_veiculo/view_list_veiculos.dart';

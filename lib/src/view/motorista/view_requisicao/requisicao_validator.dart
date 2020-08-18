@@ -1,4 +1,16 @@
+///Coding: UTF-8
+
+///Arquivo: requisicao_validator.dart
+///Criado em: "18/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Classse auxiliar para validação de requisição de manutenção
+
+///-----------------------------------------------------------------------------------
+
 class RequisicaoValidate {
+  ///Valida kilometragem
   static String validateKm(String km) {
     if (km.isEmpty) {
       return "Kilometragem não pode ser em branco";
@@ -7,6 +19,7 @@ class RequisicaoValidate {
     }
   }
 
+  ///Valida litros de combustível
   static String validateCombustivel(String combustivel) {
     final c = int.tryParse(combustivel);
     if (c == null || c < 0) {
@@ -16,6 +29,7 @@ class RequisicaoValidate {
     }
   }
 
+  ///Valida prefixo do veículo
   static String validatePrefixo(String prefixo) {
     if (prefixo.isEmpty) {
       return "Prefixo em branco";

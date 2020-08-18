@@ -1,7 +1,25 @@
-import 'package:dio/dio.dart';
+///Coding: UTF-8
+
+///Arquivo: view_requisicao_moto.dart
+///Criado em: "18/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Tela para efetuar requisição de manutenção de motocicletas
+
+///-----------------------------------------------------------------------------------
+
+///Importando material e services do SDK padrão, Get do pacote GetX, Dio do pacote Dio
+///arquivo de constantes
+///models ModelRequisicaoMotos de /src/model/server/
+///ServiceRequisicaoMotos de /src/services, AsyncDialog de /src/utils/awaitable_action
+////WillPopForm de src/utils/form_view
+///Widgets da pasta /src/view
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:dio/dio.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/model/server/model_requisicao_motos.dart';
 import 'package:sigfrotas/src/services/service_requisicao_motos.dart';

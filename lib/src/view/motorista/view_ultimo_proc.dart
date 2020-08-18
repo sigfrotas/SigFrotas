@@ -1,3 +1,21 @@
+///Coding: UTF-8
+
+///Arquivo: view_ultimo_proc.dart
+///Criado em: "18/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Widget que exibe última requisição de manutenção de veículo feita pelo usuário
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, Get do pacote GetX, intl do pacote intl,
+///future_observer do pacote lib_observer, arquivos de constantes,
+///models ModelLastInser e ModelRequisicao na pasta src/model/server
+///services ServiceLastInsert, ServiceRequisicao, ServiceRequisicaoMotos da pasta src/services
+///AsyncDialog em src/utils/awaitable_action
+///Widgets da pasta /src/view
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';

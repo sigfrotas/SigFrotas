@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
+import 'package:sigfrotas/src/model/server/model_veiculo.dart';
 import 'package:sigfrotas/src/model/server/model_counter.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
 

@@ -14,7 +14,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:sigfrotas/consts.dart';
-import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
+import 'package:sigfrotas/src/model/server/model_veiculo.dart';
 import 'package:sigfrotas/src/model/server/default_result.dart';
 import 'package:sigfrotas/src/model/server/model_counter.dart';
 

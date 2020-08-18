@@ -1,6 +1,6 @@
 ///Coding: UTF-8
 
-///Arquivo: model_requisicao.dart
+///Arquivo: model_veiculo.dart
 ///Criado em: "17/08/2020"
 ///Autores: Elias Ribeiro Pereira
 ///         Jandeson Barbosa da Conceição

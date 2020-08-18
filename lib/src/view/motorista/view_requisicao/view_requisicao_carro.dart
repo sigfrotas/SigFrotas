@@ -1,8 +1,25 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
+///Coding: UTF-8
+
+///Arquivo: view_requisicao_carro.dart
+///Criado em: "18/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Tela para efetuar requisição de manutenção de veículos
+
+///-----------------------------------------------------------------------------------
+
+///Importando material e services do SDK padrão, Get do pacote GetX, Dio do pacote Dio
+///arquivo de constantes
+///models DefaultResult, ModelRequisicao de /src/model/server/
+///ServiceRequisicao de /src/services, AsyncDialog de /src/utils/awaitable_action
+////WillPopForm de src/utils/form_view
+///Widgets da pasta /src/view
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:dio/dio.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/model/server/default_result.dart';
 import 'package:sigfrotas/src/model/server/model_requisicao.dart';
@@ -85,7 +102,6 @@ class _ViewRequisicaoCarroState extends State<ViewRequisicaoCarro> with WillPopF
                   final service = Get.find<ServiceRequisicao>();
 
                   try {
-//                    await AsyncDialog.run(context, _gk, () async => service.postRequesicao(model));
                     final r = await AsyncDialog.provide<DefaultResult>(context, _gk, () async {
                       return service.postRequesicao(model);
                     });
