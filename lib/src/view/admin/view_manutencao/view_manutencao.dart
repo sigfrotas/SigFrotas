@@ -1,6 +1,23 @@
-import 'package:flutter/cupertino.dart';
+///Coding: UTF-8
+
+///Arquivo: view_manutencao.dart
+///Criado em: "16/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Tela que lista todas as manutenções já feitas
+///filtrando os dados por usuário caso seja um condutor ou exibindo todos os dados caso seja admin
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, Get do pacote GetX
+///FutureObserver do pacote lib_observer
+///classe de Strings do arquivo consts.dart
+///model de requição de veículos e motos em /src/model
+///service de requição de veículos e motos em /src/services
+///Widgets da pasta /src/view
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lib_observer/lib_observer.dart';
 import 'package:sigfrotas/consts.dart';
@@ -53,6 +70,10 @@ class _ViewManutencaoState extends State<ViewManutencao> with SingleTickerProvid
     super.initState();
   }
 
+  ///Renderiza tela contendo [AppBar]
+  ///[TabBar] para automóveis e motocicletas
+  ///[DropdownButton] para filtrar manutenções por status
+  ///[TabBarView] contendo duas páginas, uma para listar automóveis e uma listar para motocicletas
   @override
   Widget build(BuildContext context) {
     return SafeArea(

@@ -1,15 +1,32 @@
+///Coding: UTF-8
+
+///Arquivo: view_manutencao_detalhe.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Tela para exibição detalhada dos dados da manutenção de automoveis
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, Get do pacote GetX, FutureObserver do pacote lib_observer,
+///arquivo de constantes, ModelRequisicao model_requisicao.dart
+///AsyncDialog da pasta /src/utils, ServiceRequicao
+///ServiceRequisicao em service_requisicao.dart
+///Widgets da pasta /src/view
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/model/server/model_requisicao.dart';
 import 'package:sigfrotas/src/services/service_requisicao.dart';
 import 'package:sigfrotas/src/utils/awaitable_action.dart';
+import 'package:sigfrotas/src/view/shared/dialogs.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao_detalhe/view_eletrica_detalhe.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao_detalhe/view_kilometragem.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao_detalhe/view_lataria_detalhe.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao_detalhe/view_manutencao_arrefecimento.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao_detalhe/view_motor_detalhe.dart';
-import 'package:sigfrotas/src/view/shared/dialogs.dart';
 
 class ViewManutencaoCarroDetalhe extends StatefulWidget {
   const ViewManutencaoCarroDetalhe({

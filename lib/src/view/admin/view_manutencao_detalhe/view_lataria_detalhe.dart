@@ -1,3 +1,18 @@
+///Coding: UTF-8
+
+///Arquivo: view_lataria_detalhe.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Widget que exibe opçṍes sobre o estado da lataria do veículo
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, Get do pacote GetX, arquivo de constantes,
+///ModelRequisicao em model_requisicao.dart
+///Widgets da pasta /src/view
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sigfrotas/consts.dart';
@@ -22,7 +37,6 @@ class ViewLatariaDetalhe extends StatelessWidget {
               requisicao.latariaEstado[i]
                   ? Chip(
                       elevation: 2,
-
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4),
                       ),
@@ -36,13 +50,6 @@ class ViewLatariaDetalhe extends StatelessWidget {
                   : null,
           ],
         ),
-        /*...[
-          for (var i = 0; i < Arrays.latariaEstado.length; i++)
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: requisicao.latariaEstado[i] ? Text(Arrays.latariaEstado[i]) : null,
-            ),
-        ]*/
       ],
     );
   }

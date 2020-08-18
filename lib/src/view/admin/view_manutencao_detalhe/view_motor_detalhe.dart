@@ -1,5 +1,18 @@
+///Coding: UTF-8
+
+///Arquivo: view_motor_detalhe.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Widget para exibição de dados sobre motores de veículos
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, arquivos de constantates
+///Widgets da pasta /src/view
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/view/admin/view_manutencao_detalhe/view_manutencao_descricao.dart';
 import 'package:sigfrotas/src/view/shared/widget/config_tiles/multi_option_controll.dart';

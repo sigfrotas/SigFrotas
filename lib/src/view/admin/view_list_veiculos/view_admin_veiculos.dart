@@ -1,5 +1,22 @@
-import 'package:async/async.dart';
+///Coding: UTF-8
+
+///Arquivo: view_admin_veiculos.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Tela que lista todos os veículos, dividindo em uma aba para automóveis e outra para motos
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão,AsyncMemoizer do pacote async,
+///Get do pacote GetX, FutureObserver do pacote lib_observer,
+///arquivo de constantes, ModelVeiculo da pasta /src/model/server
+///ServiceVeiculos da pasta src/services
+///Widgets da pasta /src/view
+
 import 'package:flutter/material.dart';
+import 'package:async/async.dart';
 import 'package:get/get.dart';
 import 'package:lib_observer/lib_observer.dart';
 import 'package:sigfrotas/consts.dart';

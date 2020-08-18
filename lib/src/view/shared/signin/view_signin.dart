@@ -1,3 +1,19 @@
+///Coding: UTF-8
+
+///Arquivo: view_signin.dart
+///Criado em: "16/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Tela para cadastro de novos usuários
+
+///-----------------------------------------------------------------------------------
+
+///Importando foundation, material e services do SDK padrão,
+///Dio do pacote dio, Get do pacote GetX
+///AsyncDialog, Injector e Vault da pasta src/util
+///Widgets da pasta /src/view
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,6 +58,9 @@ class _ViewSigninState extends State<ViewSignin> {
     super.initState();
   }
 
+  ///Testa se os dados de login estão preenchidos e envia dados ao servidor
+  ///Valida o retorno, grava token e dados do usuário no [Vault]
+  ///e renderiza a próxima tela
   Future _doSignin(BuildContext context) async {
     if (_formKey.currentState.validate()) {
       await AsyncDialog.run(
@@ -69,8 +88,9 @@ class _ViewSigninState extends State<ViewSignin> {
                 isAdmin: result.isAdmin,
               );
 
-              //Injeta instancia do Dio já com o token de acesso
+              ///Injeta instancia do Dio já com o token de acesso
               Injector.inject(result.token);
+              ///Chama método setPosition em [BranchView]
               widget.setPosition(result.isAdmin ? 2 : 3, result.isAdmin, result.token);
             }
           } catch (e) {
@@ -83,6 +103,8 @@ class _ViewSigninState extends State<ViewSignin> {
     }
   }
 
+  ///Renderiza tela de cadastro, contendo um TextFormField para username, login, senha, e confirmação de senha
+  ///Um button para enviar dados cadastrais e outro button que retorna a tela de login
   @override
   Widget build(BuildContext context) {
     return SafeArea(

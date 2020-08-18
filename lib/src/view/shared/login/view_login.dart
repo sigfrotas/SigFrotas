@@ -1,7 +1,23 @@
-import 'package:dio/dio.dart';
+///Coding: UTF-8
+
+///Arquivo: view_login.dart
+///Criado em: "16/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Tela para efetuar login de usuários já cadastrados
+
+///-----------------------------------------------------------------------------------
+
+///Importando foundation, material e services do SDK padrão,
+///Dio do pacote dio, Get do pacote GetX
+///AsyncDialog, Injector e Vault da pasta src/util
+///Widgets da pasta /src/view
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/model/server/model_login.dart';
@@ -15,16 +31,16 @@ import 'package:sigfrotas/src/view/shared/rounded_button.dart';
 import 'package:sigfrotas/src/view/shared/widget/app_logo.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({
-    @required this.setPosition,    
-    Key key,
-  }) : super(key: key);
+  const LoginView({@required this.setPosition, Key key}) : super(key: key);
+
   final Function(int position, bool isAdmin, String token) setPosition;
 
   @override
   _LoginViewState createState() => _LoginViewState();
 }
 
+
+///Renderiza tela de login
 class _LoginViewState extends State<LoginView> {
   TextEditingController txtRG, txtPass;
   final GlobalKey<State> _globalKey = GlobalKey<State>();
@@ -37,6 +53,9 @@ class _LoginViewState extends State<LoginView> {
     super.initState();
   }
 
+  ///Testa se os dados de login estão preenchidos e envia dados ao servidor
+  ///Valida o retorno, grava token e dados do usuário no [Vault]
+  ///e renderiza a próxima tela
   Future<void> _doLogin(BuildContext context) async {
     if (_formkey.currentState.validate()) {
       await AsyncDialog.run(
@@ -62,6 +81,7 @@ class _LoginViewState extends State<LoginView> {
 
               ///Injeta Dio e services
               Injector.inject(result.token);
+              ///Chama método setPosition em [BranchView]
               widget.setPosition(result.isAdmin ? 2 : 3, result.isAdmin, result.token);
             }
           } catch (e) {
@@ -76,6 +96,8 @@ class _LoginViewState extends State<LoginView> {
     }
   }
 
+  ///Renderiza tela de login, contendo um TextFormField para login, senha
+  ///Um button para enviar dados cadastrais e outro button que renderiza para tela de cadastro
   @override
   Widget build(BuildContext context) {
     return SafeArea(

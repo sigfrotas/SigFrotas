@@ -1,7 +1,23 @@
-import 'package:async/async.dart';
+///Coding: UTF-8
+
+///Arquivo: view_counter.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Widget que exibe total de automóveis, veículos e usuários cadastrados no sistema
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, Get do pacote GetX,
+///AsyncMemoizer do pacote async, FutureObserver do pacote lib_observer,
+///arquivo de constantes
+///model ModelCounter em model_counter.dart
+///service ServiceVeiculos em service_veiculos.dart
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:async/async.dart';
 import 'package:lib_observer/future_observer.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/model/server/model_counter.dart';

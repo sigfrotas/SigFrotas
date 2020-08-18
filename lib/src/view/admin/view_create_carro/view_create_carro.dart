@@ -1,7 +1,25 @@
+///Coding: UTF-8
+
+///Arquivo: view_create_carro.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Tela para adicionar novos veículos, usando tipo_veiculo para diferenciar entre
+///automóvel ou motocicleta, insere também dados no servidor
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, Get do pacote GetX, pacote de icones material_design_icons_flutter,
+///arquivo de constantes, validation_extensions, ModelVeiculo da pasta /src/model/server
+///ServiceVeiculos da pasta src/services, AsyncDialog da pasta /src/utils, WillPopForm da pasta /src/utils
+///Widgets da pasta /src/view
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sigfrotas/consts.dart';
+import 'package:validation_extensions/validation_extensions.dart';
 import 'package:sigfrotas/src/model/server/ModelVeiculo.dart';
 import 'package:sigfrotas/src/services/service_veiculos.dart';
 import 'package:sigfrotas/src/utils/awaitable_action.dart';
@@ -12,7 +30,6 @@ import 'package:sigfrotas/src/view/shared/widget/config_tiles/drop_down_tile.dar
 import 'package:sigfrotas/src/view/shared/widget/config_tiles/switch_tile.dart';
 import 'package:sigfrotas/src/view/shared/widget/list_divider.dart';
 import 'package:sigfrotas/src/view/shared/widget/list_section_decorator.dart';
-import 'package:validation_extensions/validation_extensions.dart';
 
 class ViewCreateVeiculo extends StatefulWidget {
   const ViewCreateVeiculo({
@@ -155,16 +172,6 @@ class _ViewCreateVeiculoState extends State<ViewCreateVeiculo> with WillPopForm 
               ),
             ),
           ),
-          /*body: Container(
-            padding: const EdgeInsets.all(8),
-            child: ListView(
-              shrinkWrap: true,
-              children: <Widget>[
-                
-
-              ],
-            ),
-          ),*/
         ),
       ),
     );

@@ -1,3 +1,16 @@
+///Coding: UTF-8
+
+///Arquivo: view_manutencao_descricao.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Widget para exibição de descrição sobre manutenção
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, Get do pacote GetX
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

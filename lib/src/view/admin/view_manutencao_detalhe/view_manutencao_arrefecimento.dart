@@ -1,3 +1,17 @@
+///Coding: UTF-8
+
+///Arquivo: view_manutencao_arrefecimento.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Widget que exibe opções sobre o estado do arrefecimento do veículo
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, arquivo de constantes,
+///Widgets da pasta /src/view
+
 import 'package:flutter/material.dart';
 import 'package:sigfrotas/consts.dart';
 import 'package:sigfrotas/src/view/shared/widget/config_tiles/multi_option_controll.dart';

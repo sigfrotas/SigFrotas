@@ -1,3 +1,15 @@
+///Coding: UTF-8
+
+///Arquivo: consts.dart
+///Criado em: "17/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Arquivo contendo constantes disponibilizando todo o texto exibido na aplicação
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão
 import 'package:flutter/material.dart';
 
 class Consts {

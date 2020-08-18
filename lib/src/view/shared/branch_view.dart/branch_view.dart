@@ -1,3 +1,17 @@
+///Coding: UTF-8
+
+///Arquivo: branch_view.dart
+///Criado em: "16/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Widget que verica dados de login e direciona o usuário para LoginView, ViewSignin, ViewAdmin e ViewMotorista
+
+///------------------------------------------------------------------------------------
+
+///Importando Material do SDK padrão, VaultData da pasta src/model, Vault e Inject da pasta src/utils
+///e os Widgets ViewAdmin, ViewMotorista, LoginView e ViewSignin da pasta src/view
+
 import 'package:flutter/material.dart';
 import 'package:sigfrotas/src/model/vault_data.dart';
 import 'package:sigfrotas/src/utils/injector.dart';
@@ -7,6 +21,8 @@ import 'package:sigfrotas/src/view/motorista/view_motorista.dart';
 import 'package:sigfrotas/src/view/shared/login/view_login.dart';
 import 'package:sigfrotas/src/view/shared/signin/view_signin.dart';
 
+///Widget que alterna entre [LoginView], [ViewSignin]
+///E a partir dos dados de login, redireciona para [ViewAdmin] ou [ViewMotorista]
 class BranchView extends StatefulWidget {
   const BranchView({
     @required this.data,
@@ -24,6 +40,7 @@ class _BranchViewState extends State<BranchView> with SingleTickerProviderStateM
   bool isAdmin;
   String token;
 
+  ///Checa existência do token de acesso e inicializa [position] inicial
   @override
   void initState() {
     isAdmin = widget.data.isAdmin;
@@ -37,6 +54,10 @@ class _BranchViewState extends State<BranchView> with SingleTickerProviderStateM
     super.initState();
   }
 
+  ///Se não há token, renderiza [LoginView]
+  ///Se há token, checa o tipo do usuário e redireciona conforme o tipo
+  ///Tipo 0 - [ViewAdmin]
+  ///Tipo 1 - [ViewMotorista]
   Widget getActualView(int pos, bool isAdmin) {
     switch (pos) {
       case 0:
@@ -59,10 +80,12 @@ class _BranchViewState extends State<BranchView> with SingleTickerProviderStateM
     }
   }
 
+  ///Busca Token no secure_storage
   Future<String> findToken() async {
     return await Vault.getToken();
   }
 
+  ///Coloca a posição de qual [Widget] deve ser renderizado
   void setPosition(int position, bool isAdmin, String token) {
     setState(() {
       this.position = position;
@@ -71,6 +94,8 @@ class _BranchViewState extends State<BranchView> with SingleTickerProviderStateM
     });
   }
 
+
+  ///Renderiza um [AnimatedSwitcher] com a child variando conforme a [position]
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
