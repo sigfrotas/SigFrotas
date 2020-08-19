@@ -1,3 +1,14 @@
+///Coding: UTF-8
+
+///Arquivo: form_validation.dart
+///Criado em: "19/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Arquivo com funções de top level para validação dados de login
+
+///-----------------------------------------------------------------------------------
+
 String validateRGPM(String s) {
   if (s.length < 5) {
     return "Deve conter no mínimo 5 caracteres";
@@ -28,17 +39,7 @@ String validatePassword(String password) {
   } else {
     return null;
   }
-}/* String validatePassword(String password) {
-  const Pattern passwordPattern =
-      r"^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})";
-  if (password.isEmpty) {
-    return "Senha não pode ser vazia";
-  } else if (!RegExp(passwordPattern).hasMatch(password)) {
-    return "Senha inválida";
-  } else {
-    return null;
-  }
-} */
+}
 
 String validateUsername(String username) {
   if (username.isEmpty) {

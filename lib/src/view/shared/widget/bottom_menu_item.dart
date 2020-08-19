@@ -1,3 +1,16 @@
+///Coding: UTF-8
+
+///Arquivo: bottom_menu_item.dart
+///Criado em: "19/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Widget que renderiza um item do menu de rodapé
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, Get do pacote GetX
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

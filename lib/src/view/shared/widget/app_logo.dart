@@ -1,3 +1,16 @@
+///Coding: UTF-8
+
+///Arquivo: app_logo.dart
+///Criado em: "19/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Widget contendo uma imagem do logotipo da aplicação
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, Get do pacote GetX
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

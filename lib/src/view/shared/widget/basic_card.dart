@@ -1,3 +1,16 @@
+///Coding: UTF-8
+
+///Arquivo: basic_card.dart
+///Criado em: "19/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Widget contendo um card padronizado com margem, sombra e cantos arredondados
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, Get do pacote GetX
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

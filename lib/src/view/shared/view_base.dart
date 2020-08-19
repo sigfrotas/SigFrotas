@@ -1,3 +1,18 @@
+///Coding: UTF-8
+
+///Arquivo: view_base.dart
+///Criado em: "19/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Tela base, contendo um card e um menu de navegação de rodapé
+
+///-----------------------------------------------------------------------------------
+
+///Importando material do SDK padrão, FutureObserver do pacote lib_observer
+///Vault de /src/utils
+///Widgets da pasta /src/view
+
 import 'package:flutter/material.dart';
 import 'package:lib_observer/lib_observer.dart';
 import 'package:sigfrotas/src/utils/vault.dart';

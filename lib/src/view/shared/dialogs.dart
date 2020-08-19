@@ -1,3 +1,16 @@
+///Coding: UTF-8
+
+///Arquivo: dialogs.dart
+///Criado em: "19/08/2020"
+///Autores: Elias Ribeiro Pereira
+///         Jandeson Barbosa da Conceição
+///         Felipe Ferreira de Sousa
+///Descrição: Classe com métodos estáticos para exibição de dialogs
+
+///-----------------------------------------------------------------------------------
+
+///Importando material, services do SDK padrão, Get do pacote GetX, arquivo de constantes
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
